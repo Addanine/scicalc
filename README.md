@@ -1,2 +1,2 @@
 # scicalc
-A scientific calculator created by @ addanine, @ababythwumps and more.
+A scientific calculator created by @addanine, @ababythwumps and more.

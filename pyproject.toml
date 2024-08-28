@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "scicalc"
+version = "0.1.0"
+description = "Simple scientific calculator webapp"
+authors = ["harryoltmans <harry@adeninelabs.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Flask = "^3.0.3"
+numpy = "^2.1.0"
+pandas = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

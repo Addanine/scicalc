@@ -60,17 +60,62 @@
     </style>
 </head>
 <body>
-    <h1>CalcLabs: Scientific Calculator</h1>
-    <p>A completely free scientific calculator made by some kids.</p>
-    <p>The Answer Shall Appear Here</p>
-    <input type="number" id="fnum" name="fnum">
-    <select name="functions" id="functions">
-        <option value="*">*</option>
-        <option value="÷">÷</option>
-        <option value="+">+</option>
-        <option value="-">-</option>
-    </select>
-    <input type="number" id="snum" name="snum"><br><br>
-    <input type="submit" value="CALCULATE">
+    <div class="calculator" id="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="button col-span-2 bg-red-500" onclick="clearDisplay()">C</button>
+            <button class="button bg-yellow-500" onclick="deleteLast()">⌫</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('÷')">/</button>
+            <button class="button" onclick="appendNumber(7)">7</button>
+            <button class="button" onclick="appendNumber(8)">8</button>
+            <button class="button" onclick="appendNumber(9)">9</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('*')">*</button>
+            <button class="button" onclick="appendNumber(4)">4</button>
+            <button class="button" onclick="appendNumber(5)">5</button>
+            <button class="button" onclick="appendNumber(6)">6</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('-')">-</button>
+            <button class="button" onclick="appendNumber(1)">1</button>
+            <button class="button" onclick="appendNumber(2)">2</button>
+            <button class="button" onclick="appendNumber(3)">3</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('+')">+</button>
+            <button class="button col-span-2" onclick="appendNumber(0)">0</button>
+            <button class="button" onclick="appendNumber('.')">.</button>
+            <button class="button bg-green-500" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '';
+
+        function clearDisplay() {
+            currentInput = '';
+            display.innerText = '0';
+        }
+
+        function deleteLast() {
+            currentInput = currentInput.slice(0, -1);
+            display.innerText = currentInput || '0';
+        }
+
+        function appendNumber(number) {
+            currentInput += number;
+            display.innerText = currentInput;
+        }
+
+        function appendOperator(operator) {
+            currentInput += ` ${operator} `;
+            display.innerText = currentInput;
+        }
+
+        function calculate() {
+            try {
+                currentInput = eval(currentInput).toString();
+                display.innerText = currentInput;
+            } catch (error) {
+                display.innerText = 'Error';
+            }
+        }
+    </script>
 </body>
 </html>

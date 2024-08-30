@@ -13,3 +13,7 @@ p {
     font-style: oblique;
     font-size: large;
 }
+
+textarea {
+    resize: none;
+}

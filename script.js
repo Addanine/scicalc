@@ -1,20 +1,11 @@
-function calculate(operation, fnum, snum) {
-    let result;
+const button1 = document.getElementById("1");
 
-    if (isNaN(fnum) || isNaN(snum)) {
-        result = "Invalid numbers.";
-    } else {
-        switch (operation) {
-            case '+':
-                result = fnum + snum;
-                break;
-            case '-':
-                result = fnum - snum;
-                break;
-            default:
-                result = "Invalid operation.";
-        }
-    }
+button1.addEventListener("click", function() {
+    var eA = document.getElementById(equationArea);
+    eA.value += newNum;
+});
 
-    document.getElementById('result').innerText = result;
+function addNum(equationArea, newNum) {
+    var eA = document.getElementById(equationArea);
+    eA.value += newNum;
 }

@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href={{url_for('static', filename='style.css')}}>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SciCalc</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>CalcLabs: SciCalc</h1>
+    <h1>CalcLabs: Scientific Calculator</h1>
     <p>A completely free scientific calculator made by some kids.</p>
-    <input type="number" id="fnum" name="fnum" placeholder="First Number">
+    <p>The Answer Shall Appear Here</p>
+    <input type="number" id="fnum" name="fnum">
     <select name="functions" id="functions">
         <option value="*">*</option>
-        <option value="/">÷</option>
+        <option value="÷">÷</option>
         <option value="+">+</option>
         <option value="-">-</option>
     </select>
-    <input type="number" id="snum" name="snum" placeholder="Second Number"><br><br>
-    <input type="submit" value="CALCULATE" onclick="calculate()">
-    <p id="result">The Answer Shall Appear Here</p>
-
-    <script src="script.js"></script>
+    <input type="number" id="snum" name="snum"><br><br>
+    <input type="submit" value="CALCULATE">
 </body>
 </html>

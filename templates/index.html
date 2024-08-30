@@ -1,23 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href={{url_for('static', filename='style.css')}}>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CalcLabs: SciCalc</title>
+    <style>
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #e2e8f0;
+        }
+        .calculator.dark {
+            background-color: #2d3748;
+        }
+        .display {
+            text-align: right;
+            font-size: 2rem;
+            padding: 1rem;
+            background-color: #f7fafc;
+        }
+        .display.dark {
+            background-color: #2d3748;
+            color: #edf2f7;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.25rem;
+            padding: 1rem;
+            background-color: #f7fafc;
+        }
+        .buttons.dark {
+            background-color: #2d3748;
+        }
+        .button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+        }
+        .button.bg-red-500 {
+            background-color: #f56565;
+            color: white;
+        }
+        .button.bg-yellow-500 {
+            background-color: #ecc94b;
+            color: black;
+        }
+        .button.bg-green-500 {
+            background-color: #48bb78;
+            color: white;
+        }
+        .button.col-span-2 {
+            grid-column: span 2;
+        }
+    </style>
 </head>
 <body>
-    <h1>CalcLabs: Scientific Calculator</h1>
-    <p>A completely free scientific calculator made by some kids.</p>
-    <p>The Answer Shall Appear Here</p>
-    <input type="number" id="fnum" name="fnum">
-    <select name="functions" id="functions">
-        <option value="*">*</option>
-        <option value="÷">÷</option>
-        <option value="+">+</option>
-        <option value="-">-</option>
-    </select>
-    <input type="number" id="snum" name="snum"><br><br>
-    <input type="submit" value="CALCULATE">
+    <div class="calculator" id="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="button col-span-2 bg-red-500" onclick="clearDisplay()">C</button>
+            <button class="button bg-yellow-500" onclick="deleteLast()">⌫</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('÷')">/</button>
+            <button class="button" onclick="appendNumber(7)">7</button>
+            <button class="button" onclick="appendNumber(8)">8</button>
+            <button class="button" onclick="appendNumber(9)">9</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('*')">*</button>
+            <button class="button" onclick="appendNumber(4)">4</button>
+            <button class="button" onclick="appendNumber(5)">5</button>
+            <button class="button" onclick="appendNumber(6)">6</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('-')">-</button>
+            <button class="button" onclick="appendNumber(1)">1</button>
+            <button class="button" onclick="appendNumber(2)">2</button>
+            <button class="button" onclick="appendNumber(3)">3</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('+')">+</button>
+            <button class="button col-span-2" onclick="appendNumber(0)">0</button>
+            <button class="button" onclick="appendNumber('.')">.</button>
+            <button class="button bg-green-500" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '';
+
+        function clearDisplay() {
+            currentInput = '';
+            display.innerText = '0';
+        }
+
+        function deleteLast() {
+            currentInput = currentInput.slice(0, -1);
+            display.innerText = currentInput || '0';
+        }
+
+        function appendNumber(number) {
+            currentInput += number;
+            display.innerText = currentInput;
+        }
+
+        function appendOperator(operator) {
+            currentInput += ` ${operator} `;
+            display.innerText = currentInput;
+        }
+
+        function calculate() {
+            try {
+                currentInput = eval(currentInput).toString();
+                display.innerText = currentInput;
+            } catch (error) {
+                display.innerText = 'Error';
+            }
+        }
+    </script>
 </body>
 </html>

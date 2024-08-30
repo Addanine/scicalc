@@ -11,6 +11,16 @@ function calculate(operation, fnum, snum) {
             case '-':
                 result = fnum - snum;
                 break;
+            case '*':
+                result = fnum * snum;
+                break;
+            case '÷':
+                if (snum === 0) {
+                    result = "Cannot divide by zero.";
+                } else {
+                    result = fnum / snum;
+                }
+                break;
             default:
                 result = "Invalid operation.";
         }

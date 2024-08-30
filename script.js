@@ -1,11 +1,30 @@
-const button1 = document.getElementById("1");
+function calculate(operation, fnum, snum) {
+    let result;
 
-button1.addEventListener("click", function() {
-    var eA = document.getElementById(equationArea);
-    eA.value += newNum;
-});
+    if (isNaN(fnum) || isNaN(snum)) {
+        result = "Invalid numbers.";
+    } else {
+        switch (operation) {
+            case '+':
+                result = fnum + snum;
+                break;
+            case '-':
+                result = fnum - snum;
+                break;
+            case '*':
+                result = fnum * snum;
+                break;
+            case '÷':
+                if (snum === 0) {
+                    result = "Cannot divide by zero.";
+                } else {
+                    result = fnum / snum;
+                }
+                break;
+            default:
+                result = "Invalid operation.";
+        }
+    }
 
-function addNum(equationArea, newNum) {
-    var eA = document.getElementById(equationArea);
-    eA.value += newNum;
+    document.getElementById('result').innerText = result;
 }

@@ -1,31 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href={{url_for('static', filename='style.css')}}>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CalcLabs: SciCalc</title>
+    <style>
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #e2e8f0;
+        }
+        .calculator.dark {
+            background-color: #2d3748;
+        }
+        .display {
+            text-align: right;
+            font-size: 2rem;
+            padding: 1rem;
+            background-color: #f7fafc;
+        }
+        .display.dark {
+            background-color: #2d3748;
+            color: #edf2f7;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.25rem;
+            padding: 1rem;
+            background-color: #f7fafc;
+        }
+        .buttons.dark {
+            background-color: #2d3748;
+        }
+        .button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+        }
+        .button.bg-red-500 {
+            background-color: #f56565;
+            color: white;
+        }
+        .button.bg-yellow-500 {
+            background-color: #ecc94b;
+            color: black;
+        }
+        .button.bg-green-500 {
+            background-color: #48bb78;
+            color: white;
+        }
+        .button.col-span-2 {
+            grid-column: span 2;
+        }
+    </style>
 </head>
 <body>
     <h1>CalcLabs: Scientific Calculator</h1>
     <p>A completely free scientific calculator made by some kids.</p>
     <p>The Answer Shall Appear Here</p>
-    <textarea id="equationArea" name="equationArea" rows="1" cols="25" placeholder="Input Equation Here"></textarea>
-    <button type="button">Calculate</button><br></br>
-
-    <button id="AC" type="button">AC</button>
-    <button id="pm" type="button">+/-</button><br></br>
-
-    <button id="7" type="button">7</button>
-    <button id="8" type="button">8</button>
-    <button id="9" type="button">9</button><br></br>
-
-    <button id="4" type="button">4</button>
-    <button id="5" type="button">5</button>
-    <button id="6" type="button">6</button><br></br>
-
-    <button id="1" type="button">1</button>
-    <button id="2" type="button">2</button>
-    <button id="3" type="button">3</button>
+    <input type="number" id="fnum" name="fnum">
+    <select name="functions" id="functions">
+        <option value="*">*</option>
+        <option value="÷">÷</option>
+        <option value="+">+</option>
+        <option value="-">-</option>
+    </select>
+    <input type="number" id="snum" name="snum"><br><br>
+    <input type="submit" value="CALCULATE">
 </body>
 </html>

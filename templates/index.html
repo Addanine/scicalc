@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CalcLabs: SciCalc</title>
-    <style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <style>
         .calculator {
             display: flex;
             flex-direction: column;
@@ -57,7 +58,7 @@
         .button.col-span-2 {
             grid-column: span 2;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <div class="calculator" id="calculator">
@@ -65,7 +66,7 @@
         <div class="buttons">
             <button class="button col-span-2 bg-red-500" onclick="clearDisplay()">C</button>
             <button class="button bg-yellow-500" onclick="deleteLast()">⌫</button>
-            <button class="button bg-yellow-500" onclick="appendOperator('÷')">/</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('/')">/</button>
             <button class="button" onclick="appendNumber(7)">7</button>
             <button class="button" onclick="appendNumber(8)">8</button>
             <button class="button" onclick="appendNumber(9)">9</button>

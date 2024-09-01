@@ -4,7 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CalcLabs: SciCalc</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #e2e8f0;
+        }
+        .calculator.dark {
+            background-color: #2d3748;
+        }
+        .display {
+            text-align: right;
+            font-size: 2rem;
+            padding: 1rem;
+            background-color: #f7fafc;
+        }
+        .display.dark {
+            background-color: #2d3748;
+            color: #edf2f7;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.25rem;
+            padding: 1rem;
+            background-color: #f7fafc;
+        }
+        .buttons.dark {
+            background-color: #2d3748;
+        }
+        .button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+        }
+        .button.bg-red-500 {
+            background-color: #f56565;
+            color: white;
+        }
+        .button.bg-yellow-500 {
+            background-color: #ecc94b;
+            color: black;
+        }
+        .button.bg-green-500 {
+            background-color: #48bb78;
+            color: white;
+        }
+        .button.col-span-2 {
+            grid-column: span 2;
+        }
+    </style>
 </head>
 <body>
     <div class="calculator" id="calculator">
@@ -51,7 +104,11 @@
         }
 
         function appendOperator(operator) {
-            currentInput += ` ${operator} `;
+            if (/[+\-*/]$/.test(currentInput)) {
+                currentInput = currentInput.slice(0, -1) + operator;
+            } else {
+                currentInput += operator;
+            }
             display.innerText = currentInput;
         }
 

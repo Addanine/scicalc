@@ -1,30 +1,54 @@
-function calculate(operation, fnum, snum) {
+// Calculate the expression and update the display
+function calculate(expression) {
     let result;
 
-    if (isNaN(fnum) || isNaN(snum)) {
-        result = "Invalid numbers.";
-    } else {
-        switch (operation) {
-            case '+':
-                result = fnum + snum;
-                break;
-            case '-':
-                result = fnum - snum;
-                break;
-            case '*':
-                result = fnum * snum;
-                break;
-            case '/':
-                if (snum === 0) {
-                    result = "Cannot divide by zero.";
-                } else {
-                    result = fnum / snum;
-                }
-                break;
-            default:
-                result = "Invalid operation.";
-        }
+    try {
+        // Evaluate the expression
+        result = eval(expression);
+    } catch (error) {
+        result = "Error";
     }
 
     document.getElementById('result').innerText = result;
+}
+
+// Clear the display
+function clearDisplay() {
+    document.getElementById('result').innerText = '0';
+}
+
+// Delete the last character from the display
+function deleteLast() {
+    let display = document.getElementById('result');
+    display.innerText = display.innerText.slice(0, -1) || '0';
+}
+
+// Append a character to the display
+function appendCharacter(character) {
+    let display = document.getElementById('result');
+    if (display.innerText === '0' && character !== '.') {
+        display.innerText = character;
+    } else {
+        display.innerText += character;
+    }
+}
+
+// Append an operator to the display
+function appendOperator(operator) {
+    let display = document.getElementById('result');
+    if (/[+\-*/]$/.test(display.innerText)) {
+        display.innerText = display.innerText.slice(0, -1) + operator;
+    } else {
+        display.innerText += operator;
+    }
+}
+
+// Append parenthesis to the display
+function appendParenthesis(parenthesis) {
+    let display = document.getElementById('result');
+    if (display.innerText === '0') {
+        display.innerText = parenthesis;
+    } else {
+        display.innerText += parenthesis;
+    }
 }

@@ -81,6 +81,8 @@
             <button class="button col-span-2" onclick="appendNumber(0)">0</button>
             <button class="button" onclick="appendNumber('.')">.</button>
             <button class="button bg-green-500" onclick="calculate()">=</button>
+            <button class="button" onclick="appendParenthesis('(')">(</button>
+            <button class="button" onclick="appendParenthesis(')')">)</button>
         </div>
     </div>
 
@@ -109,6 +111,11 @@
             } else {
                 currentInput += operator;
             }
+            display.innerText = currentInput;
+        }
+
+        function appendParenthesis(parenthesis) {
+            currentInput += parenthesis;
             display.innerText = currentInput;
         }
 

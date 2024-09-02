@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "htmx.org": "^2.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^25.0.0"
   }
 }

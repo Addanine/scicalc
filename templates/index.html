@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CalcLabs: SciCalc</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </head>
 <body id="body">
     <div class="calculator" id="calculator">
@@ -13,20 +15,20 @@
             <button class="button col-span-2 bg-red-500" onclick="clearDisplay()">C</button>
             <button class="button bg-yellow-500" onclick="deleteLast()">⌫</button>
             <button class="button bg-yellow-500" onclick="appendOperator('/')">/</button>
-            <button class="button" onclick="appendNumber(7)">7</button>
-            <button class="button" onclick="appendNumber(8)">8</button>
-            <button class="button" onclick="appendNumber(9)">9</button>
+            <button class="button" onclick="appendCharacter('7')">7</button>
+            <button class="button" onclick="appendCharacter('8')">8</button>
+            <button class="button" onclick="appendCharacter('9')">9</button>
             <button class="button bg-yellow-500" onclick="appendOperator('*')">*</button>
-            <button class="button" onclick="appendNumber(4)">4</button>
-            <button class="button" onclick="appendNumber(5)">5</button>
-            <button class="button" onclick="appendNumber(6)">6</button>
+            <button class="button" onclick="appendCharacter('4')">4</button>
+            <button class="button" onclick="appendCharacter('5')">5</button>
+            <button class="button" onclick="appendCharacter('6')">6</button>
             <button class="button bg-yellow-500" onclick="appendOperator('-')">-</button>
-            <button class="button" onclick="appendNumber(1)">1</button>
-            <button class="button" onclick="appendNumber(2)">2</button>
-            <button class="button" onclick="appendNumber(3)">3</button>
+            <button class="button" onclick="appendCharacter('1')">1</button>
+            <button class="button" onclick="appendCharacter('2')">2</button>
+            <button class="button" onclick="appendCharacter('3')">3</button>
             <button class="button bg-yellow-500" onclick="appendOperator('+')">+</button>
-            <button class="button col-span-2" onclick="appendNumber(0)">0</button>
-            <button class="button" onclick="appendNumber('.')">.</button>
+            <button class="button col-span-2" onclick="appendCharacter('0')">0</button>
+            <button class="button" onclick="appendCharacter('.')">.</button>
             <button class="button bg-green-500" onclick="calculate()">=</button>
             <button class="button" onclick="appendParenthesis('(')">(</button>
             <button class="button" onclick="appendParenthesis(')')">)</button>

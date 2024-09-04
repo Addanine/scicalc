@@ -52,3 +52,10 @@ function appendParenthesis(parenthesis) {
         display.innerText += parenthesis;
     }
 }
+
+//Add text to screen when typing from a keyboard
+const body = document.getElementById("body");
+
+body.addEventListener("keydown", (e) => {
+    display.innerText += !e.key;
+});

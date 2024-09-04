@@ -6,7 +6,7 @@
     <title>CalcLabs: SciCalc</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body id="body">
     <div class="calculator" id="calculator">
         <div class="display" id="display">0</div>
         <div class="buttons">
@@ -32,6 +32,8 @@
             <button class="button" onclick="appendParenthesis(')')">)</button>
         </div>
     </div>
+
+    
 
     <script>
         let display = document.getElementById('display');
@@ -74,6 +76,21 @@
                 display.innerText = 'Error';
             }
         }
+
+        //Add text to screen when typing from a keyboard
+        const body = document.getElementById("body");
+
+        body.addEventListener("keydown", (e) => {
+            if (e.key == "Shift" || e.key == "Meta" || e.key == "Alt" || e.key == "Escape" || e.key == "Tab" || e.key == "CapsLock" || e.key == "Control" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowDown" || e.key == "ArrowLeft") {
+                
+            } else if (e.key == "Backspace") {
+                deleteLast()
+            } else if (e.key == "Enter") {
+                calculate()
+            } else {
+                appendNumber(e.key)
+            }
+        });
     </script>
 </body>
 </html>

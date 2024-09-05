@@ -87,9 +87,9 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-window.clearDisplay = clearDisplay;
-window.deleteLast = deleteLast;
-window.appendCharacter = appendCharacter;
-window.appendOperator = appendOperator;
-window.appendParenthesis = appendParenthesis;
-window.calculate = calculate;
+    window.clearDisplay = clearDisplay;
+    window.deleteLast = deleteLast;
+    window.appendCharacter = appendCharacter;
+    window.appendOperator = appendOperator;
+    window.appendParenthesis = appendParenthesis;
+    window.calculate = calculate;

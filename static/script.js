@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-    let display = document.getElementById('display');
+
+    let display = document.getElementById('result');
     let currentInput = '';
 
     function clearDisplay() {
@@ -40,6 +40,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    document.addEventListener('keydown', (event) => {
+        const key = event.key;
+        if (/[0-9]/.test(key)) {
+            appendCharacter(key);
+        } else if (/[+\-*/]/.test(key)) {
+            appendOperator(key);
+        } else if (key === 'Enter') {
+            calculate();
+        } else if (key === 'Backspace') {
+            deleteLast();
+        } else if (key === 'Escape') {
+            clearDisplay();
+        } else if (key === '(' || key === ')') {
+            appendParenthesis(key);
+        } else if (key === '.') {
+            appendCharacter(key);
+        }
+    });
+
     window.clearDisplay = clearDisplay;
     window.deleteLast = deleteLast;
     window.appendCharacter = appendCharacter;
@@ -47,22 +66,3 @@ document.addEventListener('DOMContentLoaded', () => {
     window.appendOperator = appendOperator;
     window.appendParenthesis = appendParenthesis;
     window.calculate = calculate;
-
-    
-
-    //Add text to screen when typing from a keyboard
-    const body = document.getElementById("body");
-
-    body.addEventListener("keydown", (e) => {
-       if (e.key == "Shift" || e.key == "Meta" || e.key == "Alt" || e.key == "Escape" || e.key == "Tab" || e.key == "CapsLock" || e.key == "Control" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowDown" || e.key == "ArrowLeft") {
-    
-        } else if (e.key == "Backspace") {
-            deleteLast();
-        } else if (e.key == "Enter") {
-            calculate();
-        } else {
-            appendNumber(!e.key);
-        }
-    });
-});
-

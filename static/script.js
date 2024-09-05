@@ -12,18 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         display.innerText = currentInput || '0';
     }
 
-    function appendCharacter(character) {
-        if (character === '(' && /[0-9)]$/.test(currentInput)) {
-            currentInput += '*';
-        }
-        if (/[)]$/.test(currentInput) && /[0-9(]/.test(character)) {
-            currentInput += '*';
-        }
-        if (currentInput === '0' && character !== '.') {
-            currentInput = character;
-        } else {
-            currentInput += character;
-        }
+    function appendNumber(number) {
+        currentInput += number;
         display.innerText = currentInput;
     }
 
@@ -37,21 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function appendParenthesis(parenthesis) {
-        if (parenthesis === '(' && /[0-9)]$/.test(currentInput)) {
-            currentInput += '*';
-        }
-        if (/[)]$/.test(currentInput) && /[0-9(]/.test(parenthesis)) {
-            currentInput += '*';
-        }
         currentInput += parenthesis;
         display.innerText = currentInput;
     }
 
     function calculate() {
         try {
-            let result = eval(currentInput);
-            result = Math.round(result * 1e10) / 1e10;
-            currentInput = result.toString();
+            currentInput = eval(currentInput).toString();
             display.innerText = currentInput;
         } catch (error) {
             display.innerText = 'Error';
@@ -61,7 +43,26 @@ document.addEventListener('DOMContentLoaded', () => {
     window.clearDisplay = clearDisplay;
     window.deleteLast = deleteLast;
     window.appendCharacter = appendCharacter;
+    window.appendNumber = appendNumber;
     window.appendOperator = appendOperator;
     window.appendParenthesis = appendParenthesis;
     window.calculate = calculate;
+
+    
+
+    //Add text to screen when typing from a keyboard
+    const body = document.getElementById("body");
+
+    body.addEventListener("keydown", (e) => {
+       if (e.key == "Shift" || e.key == "Meta" || e.key == "Alt" || e.key == "Escape" || e.key == "Tab" || e.key == "CapsLock" || e.key == "Control" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowDown" || e.key == "ArrowLeft") {
+    
+        } else if (e.key == "Backspace") {
+            deleteLast();
+        } else if (e.key == "Enter") {
+            calculate();
+        } else {
+            appendNumber(!e.key);
+        }
+    });
 });
+

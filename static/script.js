@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+
     let display = document.getElementById('result');
     let currentInput = '';
 
@@ -83,4 +83,3 @@ document.addEventListener('DOMContentLoaded', () => {
     window.appendOperator = appendOperator;
     window.appendParenthesis = appendParenthesis;
     window.calculate = calculate;
-});

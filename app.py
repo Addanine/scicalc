@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-import math
+import sympy as sp
 
 app = Flask(__name__)
 
@@ -12,8 +12,9 @@ def calculate():
     data = request.get_json()
     expression = data.get('expression', '')
     try:
-        result = eval(expression, {"__builtins__": None}, math.__dict__)
-        return jsonify(result=result)
+        expression = expression.replace('^', '**')
+        result = sp.sympify(expression).evalf()
+        return jsonify(result=float(result))
     except Exception as e:
         return jsonify(error=str(e))
 

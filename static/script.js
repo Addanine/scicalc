@@ -27,7 +27,7 @@ function appendCharacter(character) {
 }
 
 function appendOperator(operator) {
-    if (/[+\-*/]$/.test(currentInput)) {
+    if (/[+\-*/^]$/.test(currentInput)) {
         currentInput = currentInput.slice(0, -1) + operator;
     } else {
         currentInput += operator;
@@ -72,7 +72,7 @@ document.addEventListener('keydown', (event) => {
     const key = event.key;
     if (/[0-9]/.test(key)) {
         appendCharacter(key);
-    } else if (/[+\-*/]/.test(key)) {
+    } else if (/[+\-*/^]/.test(key)) {
         appendOperator(key);
     } else if (key === 'Enter') {
         calculate();
@@ -87,9 +87,9 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-    window.clearDisplay = clearDisplay;
-    window.deleteLast = deleteLast;
-    window.appendCharacter = appendCharacter;
-    window.appendOperator = appendOperator;
-    window.appendParenthesis = appendParenthesis;
-    window.calculate = calculate;
+window.clearDisplay = clearDisplay;
+window.deleteLast = deleteLast;
+window.appendCharacter = appendCharacter;
+window.appendOperator = appendOperator;
+window.appendParenthesis = appendParenthesis;
+window.calculate = calculate;

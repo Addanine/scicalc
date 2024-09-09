@@ -16,6 +16,7 @@ body {
     width: 97vw;
 }
 
+
 .display {
     display: block;
     font-size: 2em;
@@ -27,13 +28,18 @@ body {
     text-align: right;
 }
 
+
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    gap: 10px;
 }
 
+
 .button {
+    padding: 20px;
+    font-size: 1.5em;
     padding: 20px;
     font-size: 1.5em;
     border: none;
@@ -52,19 +58,40 @@ body {
 }
 
 .bg-red-500 {
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #ddd;
+}
+
+.button:active {
+    background-color: #ccc;
+}
+
+.bg-red-500 {
     background-color: #f56565;
+    color: #fff;
     color: #fff;
 }
 
 .bg-yellow-500 {
+
+.bg-yellow-500 {
     background-color: #ecc94b;
+    color: #fff;
     color: #fff;
 }
 
 .bg-green-500 {
+
+.bg-green-500 {
     background-color: #48bb78;
     color: #fff;
+    color: #fff;
 }
+
+.col-span-2 {
 
 .col-span-2 {
     grid-column: span 2;

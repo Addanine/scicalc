@@ -12,9 +12,13 @@ def calculate():
     data = request.get_json()
     expression = data.get('expression', '')
     try:
+        if not expression:
+            raise ValueError("Empty expression")
         expression = expression.replace('^', '**')
         result = sp.sympify(expression).evalf()
         return jsonify(result=float(result))
+    except sp.SympifyError:
+        return jsonify(error="Invalid mathematical expression")
     except Exception as e:
         return jsonify(error=str(e))
 

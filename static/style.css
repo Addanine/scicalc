@@ -76,21 +76,19 @@ body {
 }
 
 .bg-yellow-500 {
-
-.bg-yellow-500 {
     background-color: #ecc94b;
-    color: #fff;
-    color: #fff;
 }
 
-.bg-green-500 {
 
 .bg-green-500 {
     background-color: #48bb78;
     color: #fff;
     color: #fff;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 77c34427db8b20893cdb87fbab745b15e209a2de
 .col-span-2 {
     grid-column: span 2;
 }

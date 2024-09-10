@@ -1,5 +1,6 @@
 let display = document.getElementById('result');
 let currentInput = '';
+let buffer = '';
 
 function clearDisplay() {
     currentInput = '';
@@ -27,7 +28,7 @@ function appendCharacter(character) {
 }
 
 function appendOperator(operator) {
-    if (/[+\-*/^]$/.test(currentInput)) {
+    if (/[+\-*/^√]$/.test(currentInput)) {
         currentInput = currentInput.slice(0, -1) + operator;
     } else {
         currentInput += operator;
@@ -70,16 +71,22 @@ function calculate() {
 
 document.addEventListener('keydown', (event) => {
     const key = event.key;
-    if (/[0-9]/.test(key)) {
+    buffer += key;
+    if (buffer.endsWith('sqrt')) {
+        buffer = buffer.slice(0, -4);
+        appendOperator('√');
+    } else if (/[0-9]/.test(key)) {
         appendCharacter(key);
-    } else if (/[+\-*/^]/.test(key)) {
+    } else if (/[+\-*/^√]/.test(key)) {
         appendOperator(key);
     } else if (key === 'Enter') {
         calculate();
     } else if (key === 'Backspace') {
         deleteLast();
+        buffer = buffer.slice(0, -1);
     } else if (key === 'Escape') {
         clearDisplay();
+        buffer = '';
     } else if (key === '(' || key === ')') {
         appendParenthesis(key);
     } else if (key === '.') {

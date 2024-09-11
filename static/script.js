@@ -88,6 +88,11 @@ function calculate() {
     });
 }
 
+function squareInput() {
+    currentInput = `(${currentInput})^2`;
+    calculate();
+}
+
 document.addEventListener('keydown', (event) => {
     const key = event.key;
     buffer += key;
@@ -119,3 +124,4 @@ window.appendCharacter = appendCharacter;
 window.appendOperator = appendOperator;
 window.appendParenthesis = appendParenthesis;
 window.calculate = calculate;
+window.squareInput = squareInput;

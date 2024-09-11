@@ -10,6 +10,7 @@
     <div class="calculator" id="calculator">
         <div class="display" id="result">0</div>
         <div class="buttons">
+            <button class="button bg-yellow-500" onclick="appendOperator('^')">^</button>
             <button class="button col-span-2 bg-red-500" onclick="clearDisplay()">C</button>
             <button class="button bg-yellow-500" onclick="deleteLast()">⌫</button>
             <button class="button bg-yellow-500" onclick="appendOperator('/')">/</button>
@@ -27,11 +28,10 @@
             <button class="button bg-yellow-500" onclick="appendOperator('+')">+</button>
             <button class="button col-span-2" onclick="appendCharacter('0')">0</button>
             <button class="button" onclick="appendCharacter('.')">.</button>
-            <button class="button bg-green-500" onclick="calculate()">=</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('√')">√</button>
             <button class="button" onclick="appendParenthesis('(')">(</button>
             <button class="button" onclick="appendParenthesis(')')">)</button>
-            <button class="button bg-yellow-500" onclick="appendOperator('^')">^</button>
-            <button class="button bg-yellow-500" onclick="appendOperator('√')">√</button>
+            <button class="button bg-green-500" onclick="calculate()">=</button>
         </div>
     </div>
 

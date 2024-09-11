@@ -1,6 +1,7 @@
 let display = document.getElementById('result');
 let currentInput = '';
 let buffer = '';
+var lastCharacter = ""
 
 function clearDisplay() {
     currentInput = '';
@@ -33,6 +34,10 @@ function appendOperator(operator) {
     } else {
         currentInput += operator;
     }
+    lastCharacter = currentInput.slice(-1);
+    if (lastCharacter == "√") {
+        currentInput += "(";
+    }
     display.innerText = currentInput;
 }
 
@@ -44,6 +49,20 @@ function appendParenthesis(parenthesis) {
         currentInput += '*';
     }
     currentInput += parenthesis;
+    display.innerText = currentInput;
+}
+
+function appendSqrt(number) {
+    var firstHalf = "sqrt(";
+    var middle = number;
+    var secondHalf = ")";
+    var finalSqrt = "";
+
+    finalSqrt += firstHalf
+    finalSqrt += middle
+    finalSqrt += secondHalf
+
+    currentInput += finalSqrt;
     display.innerText = currentInput;
 }
 

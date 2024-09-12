@@ -1,7 +1,8 @@
 let display = document.getElementById('result');
 let currentInput = '';
 let buffer = '';
-var lastCharacter = ""
+var lastCharacter = "";
+var finalSqrt = "";
 
 function clearDisplay() {
     currentInput = '';
@@ -53,14 +54,7 @@ function appendParenthesis(parenthesis) {
 }
 
 function appendSqrt(number) {
-    var firstHalf = "sqrt(";
-    var middle = number;
-    var secondHalf = ")";
-    var finalSqrt = "";
-
-    finalSqrt += firstHalf
-    finalSqrt += middle
-    finalSqrt += secondHalf
+    finalSqrt = `sqrt(${number})`;
 
     currentInput += finalSqrt;
     display.innerText = currentInput;

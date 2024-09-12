@@ -82,6 +82,12 @@ function calculate() {
     });
 }
 
+
+
+
+
+
+
 function squareInput() {
     currentInput = `(${currentInput})^2`;
     display.innerText = currentInput;

@@ -46,6 +46,9 @@ body {
     padding: 20px;
     font-size: 1.5em;
     border: none;
+
+
+
     border-radius: 5px;
     /* width: 23.5vw; */
     cursor: pointer;
@@ -55,6 +58,9 @@ body {
 .button:hover {
     background-color: #ddd;
 }
+
+
+
 
 .button:active {
     background-color: #ccc;
@@ -71,6 +77,9 @@ body {
 .button:active {
     background-color: #ccc;
 }
+
+
+
 
 .bg-red-500 {
     background-color: #f56565;
@@ -87,6 +96,10 @@ body {
     color: #fff;
     color: #fff;
 }
+
+
+
+
 .col-span-2 {
     grid-column: span 2;
 }

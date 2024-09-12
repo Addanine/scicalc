@@ -1,8 +1,6 @@
 let display = document.getElementById('result');
 let currentInput = '';
 let buffer = '';
-var lastCharacter = "";
-var finalSqrt = "";
 
 function clearDisplay() {
     currentInput = '';
@@ -35,10 +33,6 @@ function appendOperator(operator) {
     } else {
         currentInput += operator;
     }
-    lastCharacter = currentInput.slice(-1);
-    if (lastCharacter == "√") {
-        currentInput += "(";
-    }
     display.innerText = currentInput;
 }
 
@@ -57,6 +51,11 @@ function appendSqrt(number) {
     finalSqrt = `sqrt(${number})`;
 
     currentInput += finalSqrt;
+    display.innerText = currentInput;
+}
+
+function appendPi() {
+    currentInput += 'π';
     display.innerText = currentInput;
 }
 
@@ -82,23 +81,20 @@ function calculate() {
     });
 }
 
-
-
-
-
-
-
 function squareInput() {
     currentInput = `(${currentInput})^2`;
-    display.innerText = currentInput;
+    calculate();
 }
 
 document.addEventListener('keydown', (event) => {
     const key = event.key;
     buffer += key;
     if (buffer.endsWith('sqrt')) {
-        buffer = buffer.slice(0, -4);
+        buffer = buffer.slice(0, -4); // Remove 'sqrt' from buffer
         appendOperator('√');
+    } else if (buffer.endsWith('pi')) {
+        buffer = buffer.slice(0, -2); // Remove 'pi' from buffer
+        appendPi();
     } else if (/[0-9]/.test(key)) {
         appendCharacter(key);
     } else if (/[+\-*/^√]/.test(key)) {
@@ -107,10 +103,10 @@ document.addEventListener('keydown', (event) => {
         calculate();
     } else if (key === 'Backspace') {
         deleteLast();
-        buffer = buffer.slice(0, -1);
+        buffer = buffer.slice(0, -1); // Remove last character from buffer
     } else if (key === 'Escape') {
         clearDisplay();
-        buffer = '';
+        buffer = ''; // Clear buffer
     } else if (key === '(' || key === ')') {
         appendParenthesis(key);
     } else if (key === '.') {
@@ -125,3 +121,4 @@ window.appendOperator = appendOperator;
 window.appendParenthesis = appendParenthesis;
 window.calculate = calculate;
 window.squareInput = squareInput;
+window.appendPi = appendPi;

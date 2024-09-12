@@ -90,7 +90,7 @@ function calculate() {
 
 function squareInput() {
     currentInput = `(${currentInput})^2`;
-    calculate();
+    display.innerText = currentInput;
 }
 
 document.addEventListener('keydown', (event) => {

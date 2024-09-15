@@ -75,6 +75,34 @@ function squareInput() {
     calculate();
 }
 
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
+
+function toggleSettingsMenu() {
+    const settingsMenu = document.getElementById('settings-menu');
+    settingsMenu.classList.toggle('hidden');
+}
+
+function initDarkMode() {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.checked = true;
+    }
+
+    darkModeToggle.addEventListener('change', toggleDarkMode);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initDarkMode();
+});
+
+
+
 document.addEventListener('keydown', (event) => {
     const key = event.key;
     buffer += key;

@@ -1,17 +1,26 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalcLabs: SciCalc</title>
+    <title>Scicalc</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="settings-button">
+    <<div id="settings-menu" class="settings-menu hidden">
+    <h3>Settings</h3>
+    <div class="setting">
+        <label for="dark-mode-toggle">Dark Mode</label>
+        <input type="checkbox" id="dark-mode-toggle">
+    </div>
+    
+</div>
+    <div class="settings-button" onclick="toggleSettingsMenu()">
         <img src="{{ url_for('static', filename='assets/settingsgear.svg') }}" alt="Settings">
     </div>
-    <div class="calculator" id="calculator">
-        <div class="display" id="result">0</div>
+
+    <div id="calculator" class="calculator">
+        <div id="result" class="display">0</div>
         <div class="buttons">
             <button class="button bg-yellow-500" onclick="appendOperator('^')">^</button>
             <button class="button col-span-2 bg-red-500" onclick="clearDisplay()">C</button>

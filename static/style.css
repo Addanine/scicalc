@@ -115,3 +115,115 @@ body {
 .col-span-2 {
     grid-column: span 2;
 }
+
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+body.dark-mode .calculator {
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .display {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark-mode .button {
+    background-color: #555;
+    color: #fff;
+}
+
+body.dark-mode .button:hover {
+    background-color: #666;
+}
+
+body.dark-mode .button:active {
+    background-color: #777;
+}
+
+
+.settings-menu {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+body.dark-mode .settings-menu {
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.settings-menu h3 {
+    margin-top: 0;
+}
+
+.setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.settings-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 80%;
+    max-width: 300px;
+}
+
+body.dark-mode .settings-menu {
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.settings-menu h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}

@@ -19,8 +19,12 @@ function appendCharacter(character) {
     if (/[)]$/.test(currentInput) && /[0-9(]/.test(character)) {
         currentInput += '*';
     }
-    if (currentInput === '0' && character !== '.') {
-        currentInput = character;
+    if (currentInput === '0') {
+        if (character === '.') {
+            currentInput += character;
+        } else {
+            currentInput = character;
+        }
     } else {
         currentInput += character;
     }

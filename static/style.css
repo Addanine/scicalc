@@ -78,8 +78,22 @@ body {
     background-color: #ccc;
 }
 
+.settings-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
+.settings-button img {
+    width: 30px;
+    height: 30px;
+}
 
+.settings-button:hover {
+    transform: rotate(20deg);
+}
 
 .bg-red-500 {
     background-color: #f56565;
@@ -98,15 +112,6 @@ body {
 }
 
 
-
-
 .col-span-2 {
     grid-column: span 2;
 }
-
-
-
-
-
-
-

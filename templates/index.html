@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="settings-button">
+        <img src="{{ url_for('static', filename='settingsgear.svg') }}" alt="Settings">
+    </div>
     <div class="calculator" id="calculator">
         <div class="display" id="result">0</div>
         <div class="buttons">

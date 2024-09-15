@@ -13,18 +13,8 @@ function deleteLast() {
 }
 
 function appendCharacter(character) {
-    if (character === '(' && /[0-9)]$/.test(currentInput)) {
-        currentInput += '*';
-    }
-    if (/[)]$/.test(currentInput) && /[0-9(]/.test(character)) {
-        currentInput += '*';
-    }
-    if (currentInput === '0') {
-        if (character === '.') {
-            currentInput += character;
-        } else {
-            currentInput = character;
-        }
+    if (currentInput === '0' && character !== '.') {
+        currentInput = character;
     } else {
         currentInput += character;
     }
@@ -42,34 +32,29 @@ function appendOperator(operator) {
 
 function appendParenthesis(parenthesis) {
     if (parenthesis === '(' && /[0-9)]$/.test(currentInput)) {
-        currentInput += '*';
+        currentInput += '(';
+    } else if (parenthesis === ')' && /[0-9(]/.test(currentInput)) {
+        currentInput += ')';
+    } else {
+        currentInput += parenthesis;
     }
-    if (/[)]$/.test(currentInput) && /[0-9(]/.test(parenthesis)) {
-        currentInput += '*';
-    }
-    currentInput += parenthesis;
-    display.innerText = currentInput;
-}
-
-function appendSqrt(number) {
-    finalSqrt = `sqrt(${number})`;
-
-    currentInput += finalSqrt;
-    display.innerText = currentInput;
-}
-
-function appendPi() {
-    currentInput += 'π';
     display.innerText = currentInput;
 }
 
 function calculate() {
+    if (/\/0(?!\d)/.test(currentInput)) {
+        display.innerText = 'Error: Division by zero';
+        return;
+    }
+
+    let expression = currentInput.replace(/(\d)(\()/g, '$1*(').replace(/(\))(\d)/g, ')*$2');
+
     fetch('/calculate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ expression: currentInput })
+        body: JSON.stringify({ expression: expression })
     })
     .then(response => response.json())
     .then(data => {
@@ -94,11 +79,8 @@ document.addEventListener('keydown', (event) => {
     const key = event.key;
     buffer += key;
     if (buffer.endsWith('sqrt')) {
-        buffer = buffer.slice(0, -4); // Remove 'sqrt' from buffer
+        buffer = buffer.slice(0, -4);
         appendOperator('√');
-    } else if (buffer.endsWith('pi')) {
-        buffer = buffer.slice(0, -2); // Remove 'pi' from buffer
-        appendPi();
     } else if (/[0-9]/.test(key)) {
         appendCharacter(key);
     } else if (/[+\-*/^√]/.test(key)) {
@@ -107,7 +89,7 @@ document.addEventListener('keydown', (event) => {
         calculate();
     } else if (key === 'Backspace') {
         deleteLast();
-        buffer = buffer.slice(0, -1); // Remove last character from buffer
+        buffer = buffer.slice(0, -1);
     } else if (key === 'Escape') {
         clearDisplay();
         buffer = ''; // Clear buffer
@@ -125,4 +107,3 @@ window.appendOperator = appendOperator;
 window.appendParenthesis = appendParenthesis;
 window.calculate = calculate;
 window.squareInput = squareInput;
-window.appendPi = appendPi;

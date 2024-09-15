@@ -80,7 +80,7 @@ body {
 
 .settings-button {
     position: absolute;
-    top: 10px;
+    bottom: 10px;
     right: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -92,7 +92,7 @@ body {
 }
 
 .settings-button:hover {
-    transform: rotate(20deg);
+    transform: rotate(30deg);
 }
 
 .bg-red-500 {

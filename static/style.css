@@ -16,7 +16,6 @@ body {
     width: 97vw;
 }
 
-
 .display {
     display: block;
     font-size: 2em;
@@ -28,26 +27,17 @@ body {
     text-align: right;
 }
 
-
 .buttons {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    gap: 10px;
 }
-
 
 .button {
     padding: 20px;
     font-size: 1.5em;
-    padding: 20px;
-    font-size: 1.5em;
     border: none;
-
-
-
     border-radius: 5px;
-    /* width: 23.5vw; */
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -56,23 +46,70 @@ body {
     background-color: #ddd;
 }
 
-
-
-
 .button:active {
     background-color: #ccc;
 }
 
 .bg-red-500 {
-    transition: background-color 0.3s;
+    background-color: #f56565;
+    color: #fff;
 }
 
-.button:hover {
-    background-color: #ddd;
+.bg-yellow-500 {
+    background-color: #ecc94b;
 }
 
-.button:active {
-    background-color: #ccc;
+.bg-green-500 {
+    background-color: #48bb78;
+    color: #fff;
+}
+
+.col-span-2 {
+    grid-column: span 2;
+}
+
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+
+.dark-mode .bg-red-500 {
+    background-color: #f56565;
+    color: #333;
+}
+
+.dark-mode .bg-yellow-500 {
+    background-color: #ecc94b;
+    color: #333;
+}
+
+.dark-mode .bg-green-500 {
+    background-color: #48bb78;
+    color: #333;
+}
+
+body.dark-mode .calculator {
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .display {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark-mode .button {
+    background-color: #555;
+    color: #fff;
+}
+
+body.dark-mode .button:hover {
+    background-color: #666;
+}
+
+body.dark-mode .button:active {
+    background-color: #777;
 }
 
 .settings-button {
@@ -92,80 +129,8 @@ body {
     transform: rotate(30deg);
 }
 
-.bg-red-500 {
-    background-color: #f56565;
-    color: #fff;
-    color: #fff;
-}
-
-.bg-yellow-500 {
-    background-color: #ecc94b;
-}
-
-.bg-green-500 {
-    background-color: #48bb78;
-    color: #fff;
-    color: #fff;
-}
-
-.col-span-2 {
-    grid-column: span 2;
-}
-
-body.dark-mode {
-    background-color: #222;
-    color: #fff;
-}
-
-body.dark-mode.calculator {
-    background-color: #333;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode.display {
-    background-color: #444;
-    color: #fff;
-}
-
-body.dark-mode.button {
-    background-color: #555;
-    color: #fff;
-}
-
-body.dark-mode.button:hover {
-    background-color: #666;
-}
-
-body.dark-mode.button:active {
-    background-color: #777;
-}
-
-
 .settings-menu {
     position: fixed;
-    top: 50px;
-    right: 10px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.setting {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.hidden {
-    display: none;
-}
-
-
-.settings-menu {
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -174,13 +139,12 @@ body.dark-mode.button:active {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    width: 80%;
-    max-width: 300px;
+    font-size: 14px;
+    min-width: 200px;
 }
 
-body.dark-mode.settings-menu {
+body.dark-mode .settings-menu {
     background-color: #333;
-    color: #fff;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
@@ -199,26 +163,6 @@ body.dark-mode.settings-menu {
 .hidden {
     display: none;
 }
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: none;
-}
-
-.overlay.active {
-    display: block;
-}
-
-.hidden {
-    display: none;
-}
-
 
 .switch {
     position: relative;

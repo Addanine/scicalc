@@ -72,24 +72,8 @@ function calculate() {
 
 function squareInput() {
     currentInput = `(${currentInput})^2`;
-    display.innerText = currentInput
+    calculate();
 }
-
-function initDarkMode() {
-    const darkModeToggle = document.getElementById('dark-mode-switch');
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        darkModeToggle.checked = true;
-    }
-
-    darkModeToggle.addEventListener('change', toggleDarkMode);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    initDarkMode();
-});
 
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
@@ -125,7 +109,6 @@ document.addEventListener('click', (event) => {
     }
 });
 
-
 document.addEventListener('keydown', (event) => {
     const key = event.key;
     buffer += key;
@@ -150,6 +133,8 @@ document.addEventListener('keydown', (event) => {
         appendCharacter(key);
     }
 });
+
+document.getElementById('dark-mode-switch').addEventListener('change', toggleDarkMode);
 
 window.clearDisplay = clearDisplay;
 window.deleteLast = deleteLast;

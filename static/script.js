@@ -80,25 +80,33 @@ function toggleDarkMode() {
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
 }
 
+let settingsMenuOpen = false;
+
 function toggleSettingsMenu() {
     const settingsMenu = document.getElementById('settings-menu');
     settingsMenu.classList.toggle('hidden');
+    settingsMenuOpen = !settingsMenuOpen;
 }
 
-function initDarkMode() {
-    const darkModeSwitch = document.getElementById('dark-mode-switch');
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-    
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        darkModeSwitch.checked = true;
+function closeSettingsMenu() {
+    const settingsMenu = document.getElementById('settings-menu');
+    settingsMenu.classList.add('hidden');
+    settingsMenuOpen = false;
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && settingsMenuOpen) {
+        closeSettingsMenu();
     }
+});
 
-    darkModeSwitch.addEventListener('change', toggleDarkMode);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    initDarkMode();
+document.addEventListener('click', (event) => {
+    const settingsMenu = document.getElementById('settings-menu');
+    const settingsButton = document.querySelector('.settings-button');
+    
+    if (settingsMenuOpen && !settingsMenu.contains(event.target) && !settingsButton.contains(event.target)) {
+        closeSettingsMenu();
+    }
 });
 
 
@@ -134,3 +142,4 @@ window.appendOperator = appendOperator;
 window.appendParenthesis = appendParenthesis;
 window.calculate = calculate;
 window.squareInput = squareInput;
+window.toggleSettingsMenu = toggleSettingsMenu;

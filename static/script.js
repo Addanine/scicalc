@@ -86,15 +86,15 @@ function toggleSettingsMenu() {
 }
 
 function initDarkMode() {
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const darkModeSwitch = document.getElementById('dark-mode-switch');
     const isDarkMode = localStorage.getItem('darkMode') === 'true';
     
     if (isDarkMode) {
         document.body.classList.add('dark-mode');
-        darkModeToggle.checked = true;
+        darkModeSwitch.checked = true;
     }
 
-    darkModeToggle.addEventListener('change', toggleDarkMode);
+    darkModeSwitch.addEventListener('change', toggleDarkMode);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

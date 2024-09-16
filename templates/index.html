@@ -10,10 +10,13 @@
     <<div id="settings-menu" class="settings-menu hidden">
     <h3>Settings</h3>
     <div class="setting">
-        <label for="dark-mode-toggle">Dark Mode</label>
-        <input type="checkbox" id="dark-mode-toggle">
+        <label for="dark-mode-switch">Dark Mode</label>
+        <label class="switch">
+            <input type="checkbox" id="dark-mode-switch">
+            <span class="slider round"></span>
+        </label>
     </div>
-    
+
 </div>
     <div class="settings-button" onclick="toggleSettingsMenu()">
         <img src="{{ url_for('static', filename='assets/settingsgear.svg') }}" alt="Settings">

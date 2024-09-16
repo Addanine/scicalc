@@ -70,6 +70,11 @@ function calculate() {
     });
 }
 
+function appendPi() {
+    currentInput += 'π';
+    display.innerText = currentInput;
+}
+
 function squareInput() {
     currentInput = `(${currentInput})^2`;
     display.innerText = currentInput;
@@ -115,6 +120,9 @@ document.addEventListener('keydown', (event) => {
     if (buffer.endsWith('sqrt')) {
         buffer = buffer.slice(0, -4);
         appendOperator('√');
+    } else if (buffer.endsWith('pi')) {
+        buffer = buffer.slice(0, -2);
+        appendPi();
     } else if (/[0-9]/.test(key)) {
         appendCharacter(key);
     } else if (/[+\-*/^√]/.test(key)) {

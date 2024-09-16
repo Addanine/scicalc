@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 document.addEventListener('keydown', (event) => {
     const key = event.key;
     buffer += key;

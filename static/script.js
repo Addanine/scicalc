@@ -72,8 +72,24 @@ function calculate() {
 
 function squareInput() {
     currentInput = `(${currentInput})^2`;
-    calculate();
+    display.innerText = currentInput
 }
+
+function initDarkMode() {
+    const darkModeToggle = document.getElementById('dark-mode-switch');
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.checked = true;
+    }
+
+    darkModeToggle.addEventListener('change', toggleDarkMode);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initDarkMode();
+});
 
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');

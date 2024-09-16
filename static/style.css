@@ -73,22 +73,6 @@ body.dark-mode {
     color: #fff;
 }
 
-
-.dark-mode .bg-red-500 {
-    background-color: #f56565;
-    color: #333;
-}
-
-.dark-mode .bg-yellow-500 {
-    background-color: #ecc94b;
-    color: #333;
-}
-
-.dark-mode .bg-green-500 {
-    background-color: #48bb78;
-    color: #333;
-}
-
 body.dark-mode .calculator {
     background-color: #333;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
@@ -110,6 +94,21 @@ body.dark-mode .button:hover {
 
 body.dark-mode .button:active {
     background-color: #777;
+}
+
+body.dark-mode .bg-red-500 {
+    background-color: #a94442;
+    color: #fff;
+}
+
+body.dark-mode .bg-yellow-500 {
+    background-color: #b58900;
+    color: #fff;
+}
+
+body.dark-mode .bg-green-500 {
+    background-color: #3c763d;
+    color: #fff;
 }
 
 .settings-button {

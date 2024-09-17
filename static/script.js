@@ -2,27 +2,17 @@ let display = document.getElementById('result');
 let currentInput = '';
 let buffer = '';
 
-function clearDisplay() { // Clear current input
+function clearDisplay() {
     currentInput = '';
     display.innerText = '0';
 }
 
-
-function appendSqrt(number) {
-    var finalSqrt = "";
-
-    finalSqrt = `sqrt(${number})`;
-
-    currentInput += finalSqrt;
-    display.innerText = currentInput;
-}
-
-function deleteLast() { // Delete last character from current input
+function deleteLast() {
     currentInput = currentInput.slice(0, -1);
     display.innerText = currentInput || '0';
 }
 
-function appendCharacter(character) { // Append character to current input
+function appendCharacter(character) {
     if (currentInput === '0' && character !== '.') {
         currentInput = character;
     } else {
@@ -31,23 +21,20 @@ function appendCharacter(character) { // Append character to current input
     display.innerText = currentInput;
 }
 
-function appendOperator(operator) { // Append operator to current input
+function appendOperator(operator) {
     if (/[+\-*/^√]$/.test(currentInput)) {
         currentInput = currentInput.slice(0, -1) + operator;
     } else {
         currentInput += operator;
-        if (operator == "√") {
-            currentInput += "(";
-        }
     }
     display.innerText = currentInput;
 }
 
-function appendParenthesis(parenthesis) { // Append parenthesis to current input
+function appendParenthesis(parenthesis) {
     if (parenthesis === '(' && /[0-9)]$/.test(currentInput)) {
         currentInput += '(';
-    } else if (parenthesis === ')' && /[0-9(]/.test(currentInput)) { // If current input ends with a number or open parenthesis
-        currentInput += ')'; // Append closing parenthesis
+    } else if (parenthesis === ')' && /[0-9(]/.test(currentInput)) {
+        currentInput += ')';
     } else {
         currentInput += parenthesis;
     }
@@ -60,19 +47,19 @@ function calculate() {
         return;
     }
 
-    let expression = currentInput.replace(/(\d)(\()/g, '$1*(').replace(/(\))(\d)/g, ')*$2'); // Add multiplication operator between number and parenthesis
+    let expression = currentInput.replace(/(\d)(\()/g, '$1*(').replace(/(\))(\d)/g, ')*$2');
 
-    fetch('/calculate', { // Send expression to server
+    fetch('/calculate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ expression: expression }) // Send expression as JSON
+        body: JSON.stringify({ expression: expression })
     })
-    .then(response => response.json()) // Parse response as JSON
-    .then(data => { // Display result
+    .then(response => response.json())
+    .then(data => {
         if (data.error) {
-            display.innerText = 'Error'; // Display error message
+            display.innerText = 'Error';
         } else {
             currentInput = data.result.toString();
             display.innerText = currentInput;
@@ -83,47 +70,32 @@ function calculate() {
     });
 }
 
-function appendPi() {
-    currentInput += 'π';
-    display.innerText = currentInput;
-}
-
 function squareInput() {
     currentInput = `(${currentInput})^2`;
-    display.innerText = currentInput;
-}
-
-function toggleDarkMode() { // Toggle dark mode
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-}
-
-function appendPi() {
-    currentInput += 'π';
-    display.innerText = currentInput;
+    calculate();
 }
 
 let settingsMenuOpen = false;
 
-function toggleSettingsMenu() { // Toggle settings menu
+function toggleSettingsMenu() {
     const settingsMenu = document.getElementById('settings-menu');
     settingsMenu.classList.toggle('hidden');
     settingsMenuOpen = !settingsMenuOpen;
 }
 
-function closeSettingsMenu() { // Close settings menu
+function closeSettingsMenu() {
     const settingsMenu = document.getElementById('settings-menu');
     settingsMenu.classList.add('hidden');
     settingsMenuOpen = false;
 }
 
-document.addEventListener('keydown', (event) => { // Close settings menu on escape key press
-    if (event.key === 'Escape' && settingsMenuOpen) { 
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && settingsMenuOpen) {
         closeSettingsMenu();
     }
 });
 
-document.addEventListener('click', (event) => { // Close settings menu on click outside of menu
+document.addEventListener('click', (event) => {
     const settingsMenu = document.getElementById('settings-menu');
     const settingsButton = document.querySelector('.settings-button');
     
@@ -132,15 +104,12 @@ document.addEventListener('click', (event) => { // Close settings menu on click 
     }
 });
 
-document.addEventListener('keydown', (event) => { // Handle keyboard input
+document.addEventListener('keydown', (event) => {
     const key = event.key;
     buffer += key;
     if (buffer.endsWith('sqrt')) {
         buffer = buffer.slice(0, -4);
         appendOperator('√');
-    } else if (buffer.endsWith('pi')) {
-        buffer = buffer.slice(0, -2);
-        appendPi();
     } else if (/[0-9]/.test(key)) {
         appendCharacter(key);
     } else if (/[+\-*/^√]/.test(key)) {
@@ -159,8 +128,6 @@ document.addEventListener('keydown', (event) => { // Handle keyboard input
         appendCharacter(key);
     }
 });
-
-document.getElementById('dark-mode-switch').addEventListener('change', toggleDarkMode); // Toggle dark mode on switch change
 
 window.clearDisplay = clearDisplay;
 window.deleteLast = deleteLast;

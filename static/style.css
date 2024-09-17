@@ -53,6 +53,7 @@ body {
 .bg-red-500 {
     background-color: #f56565;
     color: #fff;
+    grid-column: span 2;
 }
 
 .bg-yellow-500 {

@@ -7,6 +7,16 @@ function clearDisplay() { // Clear current input
     display.innerText = '0';
 }
 
+
+function appendSqrt(number) {
+    var finalSqrt = "";
+
+    finalSqrt = `sqrt(${number})`;
+
+    currentInput += finalSqrt;
+    display.innerText = currentInput;
+}
+
 function deleteLast() { // Delete last character from current input
     currentInput = currentInput.slice(0, -1);
     display.innerText = currentInput || '0';
@@ -26,6 +36,9 @@ function appendOperator(operator) { // Append operator to current input
         currentInput = currentInput.slice(0, -1) + operator;
     } else {
         currentInput += operator;
+        if (operator == "√") {
+            currentInput += "(";
+        }
     }
     display.innerText = currentInput;
 }

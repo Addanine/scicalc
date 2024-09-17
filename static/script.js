@@ -1,22 +1,27 @@
 let display = document.getElementById('result');
 let currentInput = '';
+let internalExpression = '';
 let buffer = '';
 
 function clearDisplay() {
     currentInput = '';
+    internalExpression = '';
     display.innerText = '0';
 }
 
 function deleteLast() {
     currentInput = currentInput.slice(0, -1);
+    internalExpression = internalExpression.slice(0, -1);
     display.innerText = currentInput || '0';
 }
 
 function appendCharacter(character) {
     if (currentInput === '0' && character !== '.') {
         currentInput = character;
+        internalExpression = character;
     } else {
         currentInput += character;
+        internalExpression += character;
     }
     display.innerText = currentInput;
 }
@@ -24,8 +29,21 @@ function appendCharacter(character) {
 function appendOperator(operator) {
     if (/[+\-*/^√]$/.test(currentInput)) {
         currentInput = currentInput.slice(0, -1) + operator;
+        internalExpression = internalExpression.slice(0, -1) + operator;
     } else {
         currentInput += operator;
+        internalExpression += operator;
+    }
+    display.innerText = currentInput;
+}
+
+function appendPi() {
+    if (/[0-9π]$/.test(currentInput)) {
+        currentInput += 'π';
+        internalExpression += '*π';
+    } else {
+        currentInput += 'π';
+        internalExpression += 'π';
     }
     display.innerText = currentInput;
 }
@@ -33,21 +51,24 @@ function appendOperator(operator) {
 function appendParenthesis(parenthesis) {
     if (parenthesis === '(' && /[0-9)]$/.test(currentInput)) {
         currentInput += '(';
+        internalExpression += '*(';
     } else if (parenthesis === ')' && /[0-9(]/.test(currentInput)) {
         currentInput += ')';
+        internalExpression += ')';
     } else {
         currentInput += parenthesis;
+        internalExpression += parenthesis;
     }
     display.innerText = currentInput;
 }
 
 function calculate() {
-    if (/\/0(?!\d)/.test(currentInput)) {
+    if (/\/0(?!\d)/.test(internalExpression)) {
         display.innerText = 'Error: Division by zero';
         return;
     }
 
-    let expression = currentInput.replace(/(\d)(\()/g, '$1*(').replace(/(\))(\d)/g, ')*$2');
+    let expression = internalExpression.replace(/(\d)(\()/g, '$1*(').replace(/(\))(\d)/g, ')*$2');
 
     fetch('/calculate', {
         method: 'POST',
@@ -62,6 +83,7 @@ function calculate() {
             display.innerText = 'Error';
         } else {
             currentInput = data.result.toString();
+            internalExpression = currentInput;
             display.innerText = currentInput;
         }
     })
@@ -72,6 +94,7 @@ function calculate() {
 
 function squareInput() {
     currentInput = `(${currentInput})^2`;
+    internalExpression = `(${internalExpression})^2`;
     calculate();
 }
 
@@ -137,3 +160,4 @@ window.appendParenthesis = appendParenthesis;
 window.calculate = calculate;
 window.squareInput = squareInput;
 window.toggleSettingsMenu = toggleSettingsMenu;
+window.appendPi = appendPi;

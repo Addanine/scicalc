@@ -70,14 +70,24 @@ function calculate() {
     });
 }
 
-function squareInput() { // Square the current input
+function appendPi() {
+    currentInput += 'π';
+    display.innerText = currentInput;
+}
+
+function squareInput() {
     currentInput = `(${currentInput})^2`;
-    calculate();
+    display.innerText = currentInput;
 }
 
 function toggleDarkMode() { // Toggle dark mode
     document.body.classList.toggle('dark-mode');
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
+
+function appendPi() {
+    currentInput += 'π';
+    display.innerText = currentInput;
 }
 
 let settingsMenuOpen = false;
@@ -115,6 +125,9 @@ document.addEventListener('keydown', (event) => { // Handle keyboard input
     if (buffer.endsWith('sqrt')) {
         buffer = buffer.slice(0, -4);
         appendOperator('√');
+    } else if (buffer.endsWith('pi')) {
+        buffer = buffer.slice(0, -2);
+        appendPi();
     } else if (/[0-9]/.test(key)) {
         appendCharacter(key);
     } else if (/[+\-*/^√]/.test(key)) {

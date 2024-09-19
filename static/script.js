@@ -15,6 +15,12 @@ function deleteLast() {
     display.innerText = currentInput || '0';
 }
 
+function makeNegative() {
+    currentInput = `-${currentInput}`;
+    internalExpression = `-${internalExpression}`;
+    display.innerText = currentInput;
+}
+
 function appendCharacter(character) {
     if (currentInput === '0' && character !== '.') {
         currentInput = character;
@@ -95,7 +101,7 @@ function calculate() {
 function squareInput() {
     currentInput = `(${currentInput})^2`;
     internalExpression = `(${internalExpression})^2`;
-    calculate();
+    display.innerText = currentInput;
 }
 
 let settingsMenuOpen = false;

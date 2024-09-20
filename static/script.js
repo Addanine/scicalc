@@ -38,7 +38,7 @@ function appendTrigFunc(trigFunc) {
         internalExpression += "sin(";
     } else if (trigFunc == 'cosin') {
         currentInput += "cosin(";
-        internalExpression += "cosin(";
+        internalExpression += "cos(";
     } else if (trigFunc == "tan") {
         currentInput += "tan(";
         internalExpression += "tan(";

@@ -32,6 +32,20 @@ function appendCharacter(character) {
     display.innerText = currentInput;
 }
 
+function appendTrigFunc(trigFunc) {
+    if (trigFunc == 'sin') {
+        currentInput += "sin(";
+        internalExpression += "sin(";
+    } else if (trigFunc == 'cosin') {
+        currentInput += "cosin(";
+        internalExpression += "cosin(";
+    } else if (trigFunc == "tan") {
+        currentInput += "tan(";
+        internalExpression += "tan(";
+    }
+    display.innerText = currentInput;
+}
+
 function appendOperator(operator) {
     if (/[+\-*/^√]$/.test(currentInput)) {
         currentInput = currentInput.slice(0, -1) + operator;

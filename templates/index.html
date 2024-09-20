@@ -25,28 +25,34 @@
     <div id="calculator" class="calculator">
         <div id="result" class="display">0</div>
         <div class="buttons">
+            <button class="button bg-yellow-500" onclick="appendTrigFunc('sin')">sin()</button>
             <button class="button bg-yellow-500" onclick="appendOperator('^')">^</button>
             <button class="button col-span-2 bg-red-500" onclick="clearDisplay()">C</button>
             <button class="button col-span-2 bg-yellow-500" onclick="deleteLast()">⌫</button>
+            <button class="button bg-yellow-500" onclick="appendTrigFunc('cosin')">cosin()</button>
             <button class="button operator bg-yellow-500" onclick="squareInput()">x²</button>
             <button class="button" onclick="appendCharacter('7')">7</button>
             <button class="button" onclick="appendCharacter('8')">8</button>
             <button class="button" onclick="appendCharacter('9')">9</button>
             <button class="button bg-yellow-500" onclick="appendOperator('/')">/</button>
+            <button class="button bg-yellow-500" onclick="appendTrigFunc('tan')">tan()</button>
             <button class="button bg-yellow-500" onclick="appendPi()">π</button>
             <button class="button" onclick="appendCharacter('4')">4</button>
             <button class="button" onclick="appendCharacter('5')">5</button>
             <button class="button" onclick="appendCharacter('6')">6</button>
             <button class="button bg-yellow-500" onclick="appendOperator('+')">+</button>
+            <button class="button" onclick="deleteLast()">Placeholder</button>
             <button class="button bg-yellow-500" onclick="appendOperator('√')">√</button>
             <button class="button" onclick="appendCharacter('1')">1</button>
             <button class="button" onclick="appendCharacter('2')">2</button>
             <button class="button" onclick="appendCharacter('3')">3</button>
             <button class="button bg-yellow-500" onclick="appendOperator('-')">-</button>
+            <button class="button" onclick="deleteLast()">Placeholder</button>
             <button class="button bg-yellow-500" onclick="makeNegative()">+/-</button>
             <button class="button col-span-2" onclick="appendCharacter('0')">0</button>
             <button class="button bg-green-500" onclick="calculate()">=</button>
             <button class="button bg-yellow-500" onclick="appendOperator('*')">*</button>
+            <button class="button" onclick="deleteLast()">Placeholder</button>
             <button class="button" onclick="appendCharacter('.')">.</button>
             <button class="button col-span-2" onclick="appendParenthesis('(')">(</button>
             <button class="button col-span-2" onclick="appendParenthesis(')')">)</button>

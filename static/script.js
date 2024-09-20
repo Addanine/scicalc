@@ -46,6 +46,10 @@ function appendTrigFunc(trigFunc) {
     display.innerText = currentInput;
 }
 
+function appendLog(logBase) {
+    //empty log function
+}
+
 function appendOperator(operator) {
     if (/[+\-*/^√]$/.test(currentInput)) {
         currentInput = currentInput.slice(0, -1) + operator;

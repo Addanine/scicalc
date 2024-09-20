@@ -15,16 +15,16 @@ function applyDarkModePreference() {
 }
 
 function updateSliderIcon(darkModeEnabled) {
-    const sliderIcon = document.getElementById('slider-icon');
+    var sliderIcon = document.getElementById('slider-icon');
     if (darkModeEnabled) {
-        sliderIcon.src = "{{ url_for('static', filename='assets/moon.svg') }}";
+        sliderIcon.src="{{ url_for('static', filename='assets/moon.svg') }}";
         sliderIcon.alt = "Moon Icon";
     } else {
-        sliderIcon.src = "{{ url_for('static', filename='assets/sun.svg') }}";
+        sliderIcon.src="{{ url_for('static', filename='assets/sun.svg') }}";
         sliderIcon.alt = "Sun Icon";
     }
 }
 
-document.getElementById('dark-mode-switch').addEventListener('change', toggleDarkMode);
+document.getElementById('dark-mode-switch').addEventListener('change', toggleDarkMode());
 
-document.addEventListener('DOMContentLoaded', applyDarkModePreference);
+document.addEventListener('DOMContentLoaded', applyDarkModePreference());

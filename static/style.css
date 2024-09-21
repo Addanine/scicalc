@@ -29,7 +29,7 @@ body {
 
 .buttons {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
 }
 
@@ -53,7 +53,6 @@ body {
 .bg-red-500 {
     background-color: #f56565;
     color: #fff;
-    grid-column: span 2;
 }
 
 .bg-yellow-500 {
@@ -67,10 +66,6 @@ body {
 
 .col-span-2 {
     grid-column: span 2;
-}
-
-.row-span-2 {
-    grid-row: span 2;
 }
 
 body.dark-mode {
@@ -99,7 +94,7 @@ body.dark-mode .button:hover {
 
 body.dark-mode .button:active {
     background-color: #777;
-} 
+}
 
 body.dark-mode .bg-red-500 {
     background-color: #a94442;
@@ -203,61 +198,6 @@ body.dark-mode .settings-menu {
     transition: .4s;
 }
 
-input:checked + .slider {
-    background-color: #2196F3;
-}
-
-input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-}
-
 .slider img {
     position: absolute;
     top: 50%;
@@ -285,4 +225,42 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* Equations Log Styles */
+.equations-log {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    width: 300px;
+}
+
+body.dark-mode .equations-log {
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.equations-log ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.equations-log li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+body.dark-mode .equations-log li {
+    border-bottom: 1px solid #555;
+}
+
+.equations-log li:last-child {
+    border-bottom: none;
 }

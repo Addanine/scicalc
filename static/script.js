@@ -106,6 +106,7 @@ function calculate() {
         if (data.error) {
             display.innerText = 'Error';
         } else {
+            logEquation(expression, data.result);
             currentInput = data.result.toString();
             internalExpression = currentInput;
             display.innerText = currentInput;
@@ -134,6 +135,31 @@ function closeSettingsMenu() {
     const settingsMenu = document.getElementById('settings-menu');
     settingsMenu.classList.add('hidden');
     settingsMenuOpen = false;
+}
+
+function logEquation(expression, result) {
+    let equations = JSON.parse(localStorage.getItem('equations')) || [];
+    equations.push({ expression, result });
+    localStorage.setItem('equations', JSON.stringify(equations));
+}
+
+function toggleEquationsList() {
+    const equationsList = document.getElementById('equations-list');
+    equationsList.classList.toggle('hidden');
+    if (!equationsList.classList.contains('hidden')) {
+        displayEquations();
+    }
+}
+
+function displayEquations() {
+    const equations = JSON.parse(localStorage.getItem('equations')) || [];
+    const equationsUl = document.getElementById('equations');
+    equationsUl.innerHTML = '';
+    equations.forEach(eq => {
+        const li = document.createElement('li');
+        li.textContent = `${eq.expression} = ${eq.result}`;
+        equationsUl.appendChild(li);
+    });
 }
 
 document.addEventListener('keydown', (event) => {
@@ -185,3 +211,4 @@ window.calculate = calculate;
 window.squareInput = squareInput;
 window.toggleSettingsMenu = toggleSettingsMenu;
 window.appendPi = appendPi;
+window.toggleEquationsList = toggleEquationsList;

@@ -2,6 +2,7 @@ let display = document.getElementById('result');
 let currentInput = '';
 let internalExpression = '';
 let buffer = '';
+let equationsLog = [];
 
 function clearDisplay() {
     currentInput = '';
@@ -212,3 +213,7 @@ window.squareInput = squareInput;
 window.toggleSettingsMenu = toggleSettingsMenu;
 window.appendPi = appendPi;
 window.toggleEquationsList = toggleEquationsList;
+window.displayEquations = displayEquations;
+window.makeNegative = makeNegative;
+window.appendTrigFunc = appendTrigFunc;
+window.appendLog = appendLog;

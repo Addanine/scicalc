@@ -227,19 +227,6 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* Equations Log Styles */
-.equations-log {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-height: 200px;
-    overflow-y: auto;
-    width: 300px;
-}
 
 body.dark-mode .equations-log {
     background-color: #333;
@@ -252,15 +239,44 @@ body.dark-mode .equations-log {
     margin: 0;
 }
 
+
+.equations-log {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+body.dark-mode .equations-log {
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.equations-log h3 {
+    margin-top: 0;
+    font-weight: 700;
+}
+
+.equations-log ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 .equations-log li {
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
 }
 
 body.dark-mode .equations-log li {
-    border-bottom: 1px solid #555;
-}
-
-.equations-log li:last-child {
-    border-bottom: none;
+    background-color: #444;
 }

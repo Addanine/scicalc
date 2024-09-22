@@ -1,12 +1,12 @@
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
-    const darkModeEnabled = document.body.classList.contains('dark-mode');
+    const darkModeEnabled = document.body.classList.contains('dark-mode'); // Check if dark mode is enabled
     localStorage.setItem('darkMode', darkModeEnabled);
     updateSliderIcon(darkModeEnabled);
 }
 
 function applyDarkModePreference() {
-    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'true'; // Check if dark mode is enabled
     if (darkModeEnabled) {
         document.body.classList.add('dark-mode');
         document.getElementById('dark-mode-switch').checked = true;
@@ -27,4 +27,4 @@ function updateSliderIcon(darkModeEnabled) {
 
 document.getElementById('dark-mode-switch').addEventListener('change', toggleDarkMode);
 
-document.addEventListener('DOMContentLoaded', applyDarkModePreference);
+document.addEventListener('DOMContentLoaded', applyDarkModePreference); // Apply dark mode preference when the page loads

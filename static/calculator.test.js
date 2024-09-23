@@ -1,11 +1,8 @@
-// calculator.test.js
-// NOTICE: The following snippet is a jest test file. It is used to test the functions in calculator.js
-// OTHER NOTICE: PLEASE INSTALL JEST USING "npm install jest --save-dev" BEFORE RUNNING THE TESTS
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
 
-const html = fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf8');
+const html = fs.readFileSync(path.resolve(__dirname, 'scicalc/templates/index.html'), 'utf8');
 let window, document;
 
 beforeEach(() => {
@@ -17,7 +14,7 @@ beforeEach(() => {
     global.navigator = {
         userAgent: 'node.js',
     };
-    require('./script'); // Ensure the script is loaded in the DOM
+    require('./calculator');
 });
 
 describe('Calculator Functions', () => {
@@ -99,6 +96,6 @@ describe('Calculator Functions', () => {
 
     test('appendExpFunc should add exponential function to display', () => {
         window.appendExpFunc('exp');
-        expect(document.getElementById('result').innerText).toBe('exp(');
+        expect(document.getElementById('result').innerText).toBe('Math.exp(');
     });
 });

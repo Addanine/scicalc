@@ -37,13 +37,27 @@ function appendCharacter(character) {
 function appendTrigFunc(trigFunc) {
     if (trigFunc == 'sin') {
         currentInput += "sin(";
-        internalExpression += "sin(";
+        internalExpression += "Math.sin(";
     } else if (trigFunc == 'cos') {
         currentInput += "cos(";
-        internalExpression += "cos(";
+        internalExpression += "Math.cos(";
     } else if (trigFunc == "tan") {
         currentInput += "tan(";
-        internalExpression += "tan(";
+        internalExpression += "Math.tan(";
+    }
+    display.innerText = currentInput;
+}
+
+function appendInverseTrigFunc(inverseTrigFunc) {
+    if (inverseTrigFunc == 'asin') {
+        currentInput += "asin(";
+        internalExpression += "Math.asin(";
+    } else if (inverseTrigFunc == 'acos') {
+        currentInput += "acos(";
+        internalExpression += "Math.acos(";
+    } else if (inverseTrigFunc == "atan") {
+        currentInput += "atan(";
+        internalExpression += "Math.atan(";
     }
     display.innerText = currentInput;
 }
@@ -97,6 +111,17 @@ function appendParenthesis(parenthesis) {
     } else {
         currentInput += parenthesis;
         internalExpression += parenthesis;
+    }
+    display.innerText = currentInput;
+}
+
+function appendExpFunc(expFunc) {
+    if (expFunc == 'exp') {
+        currentInput += "exp(";
+        internalExpression += "Math.exp(";
+    } else if (expFunc == 'pow') {
+        currentInput += "^";
+        internalExpression += "**";
     }
     display.innerText = currentInput;
 }
@@ -233,6 +258,7 @@ function memoryClear() {
 }
 
 
+
 window.clearDisplay = clearDisplay;
 window.deleteLast = deleteLast;
 window.appendCharacter = appendCharacter;
@@ -246,7 +272,9 @@ window.toggleEquationsList = toggleEquationsList;
 window.displayEquations = displayEquations;
 window.makeNegative = makeNegative;
 window.appendTrigFunc = appendTrigFunc;
+window.appendInverseTrigFunc = appendInverseTrigFunc;
 window.appendLog = appendLog;
+window.appendExpFunc = appendExpFunc;
 window.memoryStore = memoryStore;
 window.memoryRecall = memoryRecall;
 window.memoryClear = memoryClear;

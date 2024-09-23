@@ -239,6 +239,15 @@ body.dark-mode .equations-log {
     margin: 0;
 }
 
+.button.memory {
+    background-color: #ffeb3b;
+    color: #000;
+}
+
+body.dark-mode .button.memory {
+    background-color: #cddc39;
+    color: #000;
+}
 
 .equations-log {
     position: fixed;

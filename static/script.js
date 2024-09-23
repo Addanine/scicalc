@@ -232,13 +232,6 @@ function memoryClear() {
     memoryValue = 0;
 }
 
-function memoryAdd() {
-    memoryValue += parseFloat(currentInput) || 0;
-}
-
-function memorySubtract() {
-    memoryValue -= parseFloat(currentInput) || 0;
-}
 
 window.clearDisplay = clearDisplay;
 window.deleteLast = deleteLast;
@@ -257,4 +250,3 @@ window.appendLog = appendLog;
 window.memoryStore = memoryStore;
 window.memoryRecall = memoryRecall;
 window.memoryClear = memoryClear;
-window.memoryAdd = memoryAdd;

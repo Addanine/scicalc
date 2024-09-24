@@ -12,8 +12,9 @@ def calculate():
     data = request.get_json()
     expression = data.get('expression', '')
     try:
-        expression = expression.replace('^', '**')
-        expression = expression.replace('√', 'sqrt')
+        # Replace ^ with ** for exponentiation, √ with sqrt, and π with pi
+        expression = expression.replace('^', '**').replace('√', 'sqrt').replace('π', 'pi')
+        # Parse and evaluate the expression safely using sympy
         result = sp.sympify(expression).evalf()
         return jsonify(result=float(result))
     except Exception as e:

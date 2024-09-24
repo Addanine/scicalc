@@ -126,6 +126,12 @@ function appendExpFunc(expFunc) {
     display.innerText = currentInput;
 }
 
+function appendSqrt() {
+    currentInput += "√(";
+    internalExpression += "sqrt(";
+    display.innerText = currentInput;
+}
+
 function calculate() {
     if (/\/0(?!\d)/.test(internalExpression)) {
         display.innerText = 'Error: Division by zero';
@@ -223,6 +229,15 @@ document.addEventListener('keydown', (event) => {
     if (buffer.endsWith('sqrt')) {
         buffer = buffer.slice(0, -4);
         appendOperator('√');
+    } else if (buffer.endsWith('sin')) {
+        buffer = buffer.slice(0, -3);
+        appendTrigFunc('sin')
+    } else if (buffer.endsWith('cos')) {
+        buffer = buffer.slice(0, -3);
+        appendTrigFunc('cos')
+    } else if (buffer.endsWith('tan')) {
+        buffer = buffer.slice(0, -3);
+        appendTrigFunc('tan')
     } else if (/[0-9]/.test(key)) {
         appendCharacter(key);
     } else if (/[+\-*/^√]/.test(key)) {

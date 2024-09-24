@@ -231,6 +231,15 @@ document.addEventListener('keydown', (event) => {
     if (buffer.endsWith('sqrt')) {
         buffer = buffer.slice(0, -4);
         appendOperator('√');
+    } else if (buffer.endsWith('asin')) {
+        buffer = buffer.slice(0, -3);
+        appendInverseTrigFunc('asin')
+    } else if (buffer.endsWith('acos')) {
+        buffer = buffer.slice(0, -3);
+        appendInverseTrigFunc('acos')
+    } else if (buffer.endsWith('atan')) {
+        buffer = buffer.slice(0, -3);
+        appendInverseTrigFunc('atan')
     } else if (buffer.endsWith('sin')) {
         buffer = buffer.slice(0, -3);
         appendTrigFunc('sin')

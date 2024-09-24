@@ -39,13 +39,13 @@ function appendCharacter(character) { //`appendCharacter` should add character t
 function appendTrigFunc(trigFunc) { //`appendTrigFunc` should add trigonometric function to display
     if (trigFunc == 'sin') {
         currentInput += "sin(";
-        internalExpression += "Math.sin(";
+        internalExpression += "sin(";
     } else if (trigFunc == 'cos') {
         currentInput += "cos(";
-        internalExpression += "Math.cos(";
+        internalExpression += "cos(";
     } else if (trigFunc == "tan") {
         currentInput += "tan(";
-        internalExpression += "Math.tan(";
+        internalExpression += "tan(";
     }
     display.innerText = currentInput;
 }
@@ -53,13 +53,13 @@ function appendTrigFunc(trigFunc) { //`appendTrigFunc` should add trigonometric 
 function appendInverseTrigFunc(inverseTrigFunc) { // `appendInverseTrigFunc` should add inverse trigonometric function to display
     if (inverseTrigFunc == 'asin') {
         currentInput += "asin(";
-        internalExpression += "Math.asin(";
+        internalExpression += "math.asin(";
     } else if (inverseTrigFunc == 'acos') {
         currentInput += "acos(";
-        internalExpression += "Math.acos(";
+        internalExpression += "math.acos(";
     } else if (inverseTrigFunc == "atan") {
         currentInput += "atan(";
-        internalExpression += "Math.atan(";
+        internalExpression += "math.atan(";
     }
     display.innerText = currentInput;
 }

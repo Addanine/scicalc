@@ -1,3 +1,7 @@
+// Test: Jest
+// This file contains the tests for the calculator functions
+// please install Jest with "npm install --save-dev jest" before running the tests with "npm test"
+
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');

@@ -3,27 +3,29 @@ let currentInput = '';
 let internalExpression = '';
 let buffer = '';
 let equationsLog = [];
-let memoryValue = 0; // Memory variable
+let memoryValue = 0;
 
-function clearDisplay() {
+
+
+function clearDisplay() { //`clearDisplay` should clear the display
     currentInput = '';
     internalExpression = '';
     display.innerText = '0';
 }
 
-function deleteLast() {
+function deleteLast() { //`deleteLast` should delete the last character from display
     currentInput = currentInput.slice(0, -1);
     internalExpression = internalExpression.slice(0, -1);
     display.innerText = currentInput || '0';
 }
 
-function makeNegative() {
+function makeNegative() { // `makeNegative` should toggle the sign of the number
     currentInput = `-${currentInput}`;
     internalExpression = `-${internalExpression}`;
     display.innerText = currentInput;
 }
 
-function appendCharacter(character) {
+function appendCharacter(character) { //`appendCharacter` should add character to display
     if (currentInput === '0' && character !== '.') {
         currentInput = character;
         internalExpression = character;
@@ -34,7 +36,7 @@ function appendCharacter(character) {
     display.innerText = currentInput;
 }
 
-function appendTrigFunc(trigFunc) {
+function appendTrigFunc(trigFunc) { //`appendTrigFunc` should add trigonometric function to display
     if (trigFunc == 'sin') {
         currentInput += "sin(";
         internalExpression += "Math.sin(";
@@ -48,7 +50,7 @@ function appendTrigFunc(trigFunc) {
     display.innerText = currentInput;
 }
 
-function appendInverseTrigFunc(inverseTrigFunc) {
+function appendInverseTrigFunc(inverseTrigFunc) { // `appendInverseTrigFunc` should add inverse trigonometric function to display
     if (inverseTrigFunc == 'asin') {
         currentInput += "asin(";
         internalExpression += "Math.asin(";
@@ -62,7 +64,7 @@ function appendInverseTrigFunc(inverseTrigFunc) {
     display.innerText = currentInput;
 }
 
-function appendLog(logBase) {
+function appendLog(logBase) { //`appendLog` should add log function to display
     console.log('appendLog called with logBase:', logBase);
     if (logBase === '10') {
         currentInput += 'log(';
@@ -79,7 +81,7 @@ function appendLog(logBase) {
     display.innerText = currentInput;
 }
 
-function appendOperator(operator) {
+function appendOperator(operator) { //`appendOperator` should add operator to display
     if (/[+\-*/^√]$/.test(currentInput)) {
         currentInput = currentInput.slice(0, -1) + operator;
         internalExpression = internalExpression.slice(0, -1) + operator;
@@ -90,7 +92,7 @@ function appendOperator(operator) {
     display.innerText = currentInput;
 }
 
-function appendPi() {
+function appendPi() { //`appendPi` should add π to display
     if (/[0-9π]$/.test(currentInput)) {
         currentInput += 'π';
         internalExpression += '*π';
@@ -101,7 +103,7 @@ function appendPi() {
     display.innerText = currentInput;
 }
 
-function appendParenthesis(parenthesis) {
+function appendParenthesis(parenthesis) { //`appendParenthesis` should add parenthesis to display
     if (parenthesis === '(' && /[0-9)]$/.test(currentInput)) {
         currentInput += '(';
         internalExpression += '*(';
@@ -115,7 +117,7 @@ function appendParenthesis(parenthesis) {
     display.innerText = currentInput;
 }
 
-function appendExpFunc(expFunc) {
+function appendExpFunc(expFunc) { //`appendExpFunc` should add exponential function to display
     if (expFunc == 'exp') {
         currentInput += "exp(";
         internalExpression += "Math.exp(";
@@ -126,67 +128,67 @@ function appendExpFunc(expFunc) {
     display.innerText = currentInput;
 }
 
-function appendSqrt() {
+function appendSqrt() { //`appendSqrt` should add square root function to display
     currentInput += "√(";
     internalExpression += "sqrt(";
     display.innerText = currentInput;
 }
 
-function calculate() {
+function calculate() { 
     if (/\/0(?!\d)/.test(internalExpression)) {
         display.innerText = 'Error: Division by zero';
         return;
     }
 
-    let expression = internalExpression.replace(/(\d)(\()/g, '$1*(').replace(/(\))(\d)/g, ')*$2');
+    let expression = internalExpression.replace(/(\d)(\()/g, '$1*(').replace(/(\))(\d)/g, ')*$2'); // Add multiplication operator between number and parenthesis
 
-    fetch('/calculate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+    fetch('/calculate', { // Send the expression to the server
+        method: 'POST', // Send a POST request
+        headers: { 
+            'Content-Type': 'application/json' // Tell the server we are sending JSON
         },
-        body: JSON.stringify({ expression: expression })
+        body: JSON.stringify({ expression: expression }) // Send the expression as JSON
     })
-    .then(response => response.json())
+    .then(response => response.json()) // Parse the JSON response
     .then(data => {
         if (data.error) {
-            display.innerText = 'Error';
+            display.innerText = 'Error'; // Display an error if the server sends one
         } else {
             logEquation(expression, data.result);
-            currentInput = data.result.toString();
+            currentInput = data.result.toString(); // Set the current input to the result
             internalExpression = currentInput;
-            display.innerText = currentInput;
+            display.innerText = currentInput; // Display the result
         }
     })
     .catch(error => {
-        display.innerText = 'Error';
+        display.innerText = 'Error'; // Display an error if the server does not respond
     });
 }
 
 function squareInput() {
-    currentInput = `(${currentInput})^2`;
+    currentInput = `(${currentInput})^2`; // Square the current input
     internalExpression = `(${internalExpression})^2`;
     display.innerText = currentInput;
 }
 
 let settingsMenuOpen = false;
 
-function toggleSettingsMenu() {
+function toggleSettingsMenu() { //`toggleSettingsMenu` should toggle the settings menu
     const settingsMenu = document.getElementById('settings-menu');
     settingsMenu.classList.toggle('hidden');
     settingsMenuOpen = !settingsMenuOpen;
 }
 
-function closeSettingsMenu() {
+function closeSettingsMenu() { //`closeSettingsMenu` should close the settings menu
     const settingsMenu = document.getElementById('settings-menu');
     settingsMenu.classList.add('hidden');
     settingsMenuOpen = false;
 }
 
-function logEquation(expression, result) {
-    let equations = JSON.parse(localStorage.getItem('equations')) || [];
-    equations.push({ expression, result });
-    localStorage.setItem('equations', JSON.stringify(equations));
+function logEquation(expression, result) { //`logEquation` should log the equation and result to local storage
+    let equations = JSON.parse(localStorage.getItem('equations')) || []; // Get the equations from local storage
+    equations.push({ expression, result }); // Add the new equation to the array
+    localStorage.setItem('equations', JSON.stringify(equations)); // Save the equations back to local storage
 }
 
 function toggleEquationsList() {

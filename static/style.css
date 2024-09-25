@@ -133,6 +133,10 @@ body.dark-mode .bg-green-500 {
     transform: rotate(30deg);
 }
 
+.settings-button.dark-mode {
+    color: #fff;
+}
+
 .history-button {
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -141,10 +145,6 @@ body.dark-mode .bg-green-500 {
 .history-button img {
     width: 30px;
     height: 30px;
-}
-
-.history-button:hover {
-    transform: rotate(30deg);
 }
 
 .settings-menu {

@@ -20,9 +20,14 @@ function deleteLast() { //`deleteLast` should delete the last character from dis
     display.innerText = currentInput || '0';
 }
 
-function makeNegative() { // `makeNegative` should toggle the sign of the number
-    currentInput = `-${currentInput}`;
-    internalExpression = `-${internalExpression}`;
+function changePositiveNegative() { // `changePositiveNegative` should toggle the sign of the number
+    if (currentInput.charAt(0) == '-') {
+        currentInput = currentInput.slice(1);
+        internalExpression = internalExpression.slice(1);
+    } else {
+        currentInput = `-${currentInput}`;
+        internalExpression = `-${internalExpression}`;
+    }
     display.innerText = currentInput;
 }
 
@@ -76,7 +81,7 @@ function appendLog(logBase) { //`appendLog` should add log function to display
         var e = currentInput.split(lastOperator);
 
         currentInput = currentInput.slice(0, -e[1].length);
-        currentInput += `${e[e.length - 1]}vₑlog(`;
+        currentInput += `${e[e.length - 1]}vlog(`;
         internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]})`;
     } else {
         console.error('Invalid log base:', logBase);
@@ -215,6 +220,7 @@ function closeEquationsList() {
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         closeEquationsList();
+        clearDisplay();
     }
 });
 

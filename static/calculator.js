@@ -220,7 +220,7 @@ document.addEventListener('keydown', (event) => {
 
 document.addEventListener('click', (event) => {
     const equationsList = document.getElementById('equations-list');
-    const equationsToggleButton = document.querySelector('.settings-button');
+    const equationsToggleButton = document.querySelector('.history-button');
     const isClickInsideEquationsList = equationsList.contains(event.target);
 
     if (!isClickInsideEquationsList && !equationsToggleButton.contains(event.target)) {

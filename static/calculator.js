@@ -4,6 +4,7 @@ let internalExpression = '';
 let buffer = '';
 let equationsLog = [];
 let memoryValue = 0;
+var laterValueForLog
 
 
 
@@ -68,10 +69,15 @@ function appendLog(logBase) { //`appendLog` should add log function to display
     console.log('appendLog called with logBase:', logBase);
     if (logBase === '10') {
         currentInput += 'log(';
-        internalExpression += 'Math.log10(';
+        internalExpression += 'log(';
     } else if (logBase === 'e') {
-        currentInput += 'ln(';
-        internalExpression += 'Math.log(';
+        var operatorsOnly = currentInput.replace(/[0-9]+/g, "");
+        var lastOperator = operatorsOnly.charAt(operatorsOnly.length - 1);
+        var e = currentInput.split(lastOperator);
+
+        currentInput = currentInput.slice(0, -e[1].length);
+        currentInput += `${e[e.length - 1]}vₑlog(`;
+        internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]})`;
     } else {
         console.error('Invalid log base:', logBase);
         return;
@@ -231,6 +237,9 @@ document.addEventListener('keydown', (event) => {
     if (buffer.endsWith('sqrt')) {
         buffer = buffer.slice(0, -4);
         appendOperator('√');
+    } else if (buffer.endsWith('log')) {
+        buffer = buffer.slice(0, -3);
+        appendLog('10')
     } else if (buffer.endsWith('asin')) {
         buffer = buffer.slice(0, -3);
         appendInverseTrigFunc('asin')

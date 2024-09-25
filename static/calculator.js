@@ -199,6 +199,31 @@ function toggleEquationsList() {
     }
 }
 
+function closeEquationsList() {
+    const equationsList = document.getElementById('equations-list');
+    if (!equationsList.classList.contains('hidden')) {
+        equationsList.classList.add('hidden');
+    }
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeEquationsList();
+    }
+});
+
+document.addEventListener('click', (event) => {
+    const equationsList = document.getElementById('equations-list');
+    const equationsToggleButton = document.querySelector('.settings-button');
+    const isClickInsideEquationsList = equationsList.contains(event.target);
+
+    if (!isClickInsideEquationsList && !equationsToggleButton.contains(event.target)) {
+        closeEquationsList();
+    }
+});
+
+
+
 
 function displayEquations() {
     const equations = JSON.parse(localStorage.getItem('equations')) || [];
@@ -299,10 +324,7 @@ document.addEventListener('keydown', (event) => {
     } else if (key === 'Backspace') {
         deleteLast();
         buffer = buffer.slice(0, -1);
-    } else if (key === 'Escape') {
-        clearDisplay();
-        buffer = ''; // Clear buffer
-    } else if (key === '(' || key === ')') {
+    }  else if (key === '(' || key === ')') {
         appendParenthesis(key);
     } else if (key === '.') {
         appendCharacter(key);

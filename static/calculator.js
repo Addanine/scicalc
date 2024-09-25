@@ -205,16 +205,81 @@ function toggleEquationsList() {
     }
 }
 
+function closeEquationsList() {
+    const equationsList = document.getElementById('equations-list');
+    if (!equationsList.classList.contains('hidden')) {
+        equationsList.classList.add('hidden');
+    }
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeEquationsList();
+    }
+});
+
+document.addEventListener('click', (event) => {
+    const equationsList = document.getElementById('equations-list');
+    const equationsToggleButton = document.querySelector('.settings-button');
+    const isClickInsideEquationsList = equationsList.contains(event.target);
+
+    if (!isClickInsideEquationsList && !equationsToggleButton.contains(event.target)) {
+        closeEquationsList();
+    }
+});
+
+
+
+
 function displayEquations() {
     const equations = JSON.parse(localStorage.getItem('equations')) || [];
     const equationsUl = document.getElementById('equations');
     equationsUl.innerHTML = '';
-    equations.forEach(eq => {
+
+    equations.reverse().forEach((eq, index) => {
         const li = document.createElement('li');
-        li.textContent = `${eq.expression} = ${eq.result}`;
+        li.innerHTML = `
+            <div class='equation-container'>
+                <div class='equation-text'>
+                    ${eq.expression} = ${eq.result}
+                </div>
+                <img src="plus.svg" alt="Add Equation" class="add-equation" id="add-equation-${index}" style="cursor: pointer;">
+            </div>
+        `;
+        
+        li.querySelector('.equation-text').addEventListener('click', () => {
+            recallEquation(eq.expression, eq.result);
+        });
+
+        const plusIcon = li.querySelector(`#add-equation-${index}`);
+        plusIcon.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent the recallEquation function from being triggered
+            addEquationToInput(eq.result);
+        });
+
         equationsUl.appendChild(li);
     });
 }
+
+
+function addEquationToInput(result) {
+    if (/[0-9]$/.test(currentInput) || /[+\-*/]$/.test(currentInput)) {
+        currentInput += '+' + result;
+        internalExpression += '+' + result;
+    } else {
+        currentInput = result.toString();
+        internalExpression = result.toString();
+    }
+    display.innerText = currentInput;
+}
+
+
+function recallEquation(expression, result) {
+    currentInput = result.toString();
+    internalExpression = expression;
+    display.innerText = currentInput;
+}
+
 
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && settingsMenuOpen) {
@@ -267,10 +332,7 @@ document.addEventListener('keydown', (event) => {
     } else if (key === 'Backspace') {
         deleteLast();
         buffer = buffer.slice(0, -1);
-    } else if (key === 'Escape') {
-        clearDisplay();
-        buffer = ''; // Clear buffer
-    } else if (key === '(' || key === ')') {
+    }  else if (key === '(' || key === ')') {
         appendParenthesis(key);
     } else if (key === '.') {
         appendCharacter(key);

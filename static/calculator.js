@@ -230,18 +230,17 @@ function displayEquations() {
     const equationsUl = document.getElementById('equations');
     equationsUl.innerHTML = '';
 
-    equations.forEach((eq, index) => {
+    equations.reverse().forEach((eq, index) => {
         const li = document.createElement('li');
         li.innerHTML = `
             <div class='equation-container'>
                 <div class='equation-text'>
                     ${eq.expression} = ${eq.result}
                 </div>
-                <img src="static/assets/plus.svg" alt="Add Equation" class="add-equation" id="add-equation-${index}" style="cursor: pointer;">
+                <img src="plus.svg" alt="Add Equation" class="add-equation" id="add-equation-${index}" style="cursor: pointer;">
             </div>
         `;
         
-        // Add an event listener to recall the equation on click
         li.querySelector('.equation-text').addEventListener('click', () => {
             recallEquation(eq.expression, eq.result);
         });

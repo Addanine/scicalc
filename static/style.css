@@ -301,3 +301,23 @@ body.dark-mode .equations-log li {
 .h-result {
     padding-left: 4px;
 }
+
+.equation-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.equation-text {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.add-equation {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}

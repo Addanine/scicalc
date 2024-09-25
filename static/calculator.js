@@ -199,17 +199,57 @@ function toggleEquationsList() {
     }
 }
 
+
 function displayEquations() {
     const equations = JSON.parse(localStorage.getItem('equations')) || [];
     const equationsUl = document.getElementById('equations');
     equationsUl.innerHTML = '';
-    equations.forEach(eq => {
+
+    equations.forEach((eq, index) => {
         const li = document.createElement('li');
-        li.textContent = `${eq.expression} = `;
+        li.innerHTML = `
+            <div class='equation-container'>
+                <div class='equation-text'>
+                    ${eq.expression} = ${eq.result}
+                </div>
+                <img src="static/assets/plus.svg" alt="Add Equation" class="add-equation" id="add-equation-${index}" style="cursor: pointer;">
+            </div>
+        `;
+        
+        // Add an event listener to recall the equation on click
+        li.querySelector('.equation-text').addEventListener('click', () => {
+            recallEquation(eq.expression, eq.result);
+        });
+
+        const plusIcon = li.querySelector(`#add-equation-${index}`);
+        plusIcon.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent the recallEquation function from being triggered
+            addEquationToInput(eq.result);
+        });
+
         equationsUl.appendChild(li);
-        li.innerHTML = `<div class='h-equation'>${eq.expression}</div><div class='h-result'>= ${eq.result}</div>`
     });
 }
+
+
+function addEquationToInput(result) {
+    if (/[0-9]$/.test(currentInput) || /[+\-*/]$/.test(currentInput)) {
+        currentInput += '+' + result;
+        internalExpression += '+' + result;
+    } else {
+        currentInput = result.toString();
+        internalExpression = result.toString();
+    }
+    display.innerText = currentInput;
+}
+
+
+function recallEquation(expression, result) {
+    currentInput = result.toString();
+    internalExpression = expression;
+    display.innerText = currentInput;
+}
+
 
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && settingsMenuOpen) {

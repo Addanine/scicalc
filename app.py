@@ -19,7 +19,7 @@ def calculate():
     try:
         #Replace ^ with ** for exponentiation, √ with sqrt, and π with pi
         
-        expression = expression.replace('^', '**').replace('√', 'sqrt').replace('π', 'pi')
+        expression = expression.replace('^', '**').replace('√', 'sqrt').replace('π', '(pi)')
         # Parse and evaluate the expression safely using sympy
         result = sp.sympify(expression).evalf()
         if not session["history"]:

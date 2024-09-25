@@ -205,8 +205,9 @@ function displayEquations() {
     equationsUl.innerHTML = '';
     equations.forEach(eq => {
         const li = document.createElement('li');
-        li.textContent = `${eq.expression} = ${eq.result}`;
+        li.textContent = `${eq.expression} = `;
         equationsUl.appendChild(li);
+        li.innerHTML = `<div class='h-equation'>${eq.expression}</div><div class='h-result'>= ${eq.result}</div>`
     });
 }
 

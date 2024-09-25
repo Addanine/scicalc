@@ -111,10 +111,14 @@ body.dark-mode .bg-green-500 {
     color: #fff;
 }
 
-.settings-button {
+.meta-buttons {
     position: absolute;
     bottom: 10px;
     right: 10px;
+    display: flex;
+}
+.settings-button {
+    
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -288,4 +292,12 @@ body.dark-mode .equations-log {
 
 body.dark-mode .equations-log li {
     background-color: #444;
+}
+
+.h-equation {
+    font-weight: bold;
+}
+
+.h-result {
+    padding-left: 4px;
 }

@@ -111,15 +111,19 @@ body.dark-mode .bg-green-500 {
     color: #fff;
 }
 
+body.dark-mode .meta-buttons {
+    background-color: #5e5e5e;
+}
+
 .meta-buttons {
     position: absolute;
     bottom: 10px;
     right: 10px;
     display: flex;
+    border-radius: 5px;
 }
 
 .settings-button {
-    
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -131,10 +135,6 @@ body.dark-mode .bg-green-500 {
 
 .settings-button:hover {
     transform: rotate(30deg);
-}
-
-.settings-button.dark-mode {
-    color: #fff;
 }
 
 .history-button {

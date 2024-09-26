@@ -36,6 +36,16 @@ function appendCharacter(character) { //`appendCharacter` should add character t
         currentInput = character;
         internalExpression = character;
     } else {
+        if (currentInput.includes("vlog(")) { //this if statement checks if there is a vLog and allows the input to be correct
+            var postVLog = currentInput.split("vlog(");
+            postVLog = postVLog[postVLog.length - 1];
+            if (postVLog.includes(")")) {
+                console.log("vlog closed");
+            } else {
+                laterValueForLog = postVLog;
+            }
+        }
+
         currentInput += character;
         internalExpression += character;
     }
@@ -83,7 +93,6 @@ function appendLog(logBase) { //`appendLog` should add log function to display
         } else {
             var e = currentInput.split(lastOperator);
         }
-
 
         currentInput += "vlog(";
         if (e.constructor === Array) {

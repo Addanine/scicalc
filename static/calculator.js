@@ -4,6 +4,7 @@ let internalExpression = '';
 let buffer = '';
 let equationsLog = [];
 let memoryValue = 0;
+var laterValueForLog = "10"
 
 
 
@@ -19,9 +20,14 @@ function deleteLast() { //`deleteLast` should delete the last character from dis
     display.innerText = currentInput || '0';
 }
 
-function makeNegative() { // `makeNegative` should toggle the sign of the number
-    currentInput = `-${currentInput}`;
-    internalExpression = `-${internalExpression}`;
+function changePositiveNegative() { // `changePositiveNegative` should toggle the sign of the number
+    if (currentInput.charAt(0) == '-') {
+        currentInput = currentInput.slice(1);
+        internalExpression = internalExpression.slice(1);
+    } else {
+        currentInput = `-${currentInput}`;
+        internalExpression = `-${internalExpression}`;
+    }
     display.innerText = currentInput;
 }
 
@@ -68,12 +74,28 @@ function appendLog(logBase) { //`appendLog` should add log function to display
     console.log('appendLog called with logBase:', logBase);
     if (logBase === '10') {
         currentInput += 'log(';
-        internalExpression += 'Math.log10(';
+        internalExpression += 'log(';
     } else if (logBase === 'e') {
-        currentInput += 'ln(';
-        internalExpression += 'Math.log(';
+        var operatorsOnly = currentInput.replace(/[0-9]+/g, "");
+        var lastOperator = operatorsOnly.charAt(operatorsOnly.length - 1);
+        if (lastOperator == "") {
+            var e = currentInput;
+        } else {
+            var e = currentInput.split(lastOperator);
+        }
+
+
+        currentInput += "vlog(";
+        if (e.constructor === Array) {
+            internalExpression = internalExpression.slice(0, -e[1].length)
+            internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]})`;
+        } else {
+            internalExpression = internalExpression.slice(e)
+            internalExpression += `log(${laterValueForLog}, ${e})`;
+        }
+
     } else {
-        console.error('Invalid log base:', logBase);
+        console.error('Invalid log base:', e[e.length - 1]);
         return;
     }
     console.log('currentInput:', currentInput);
@@ -199,16 +221,82 @@ function toggleEquationsList() {
     }
 }
 
+function closeEquationsList() {
+    const equationsList = document.getElementById('equations-list');
+    if (!equationsList.classList.contains('hidden')) {
+        equationsList.classList.add('hidden');
+    }
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeEquationsList();
+        clearDisplay();
+    }
+});
+
+document.addEventListener('click', (event) => {
+    const equationsList = document.getElementById('equations-list');
+    const equationsToggleButton = document.querySelector('.history-button');
+    const isClickInsideEquationsList = equationsList.contains(event.target);
+
+    if (!isClickInsideEquationsList && !equationsToggleButton.contains(event.target)) {
+        closeEquationsList();
+    }
+});
+
+
+
+
 function displayEquations() {
     const equations = JSON.parse(localStorage.getItem('equations')) || [];
     const equationsUl = document.getElementById('equations');
     equationsUl.innerHTML = '';
-    equations.forEach(eq => {
+
+    equations.reverse().forEach((eq, index) => {
         const li = document.createElement('li');
-        li.textContent = `${eq.expression} = ${eq.result}`;
+        li.innerHTML = `
+            <div class='equation-container'>
+                <div class='equation-text'>
+                    ${eq.expression} = ${eq.result}
+                </div>
+                <img src="plus.svg" alt="Add Equation" class="add-equation" id="add-equation-${index}" style="cursor: pointer;">
+            </div>
+        `;
+        
+        li.querySelector('.equation-text').addEventListener('click', () => {
+            recallEquation(eq.expression, eq.result);
+        });
+
+        const plusIcon = li.querySelector(`#add-equation-${index}`);
+        plusIcon.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent the recallEquation function from being triggered
+            addEquationToInput(eq.result);
+        });
+
         equationsUl.appendChild(li);
     });
 }
+
+
+function addEquationToInput(result) {
+    if (/[0-9]$/.test(currentInput) || /[+\-*/]$/.test(currentInput)) {
+        currentInput += '+' + result;
+        internalExpression += '+' + result;
+    } else {
+        currentInput = result.toString();
+        internalExpression = result.toString();
+    }
+    display.innerText = currentInput;
+}
+
+
+function recallEquation(expression, result) {
+    currentInput = result.toString();
+    internalExpression = expression;
+    display.innerText = currentInput;
+}
+
 
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && settingsMenuOpen) {
@@ -231,6 +319,9 @@ document.addEventListener('keydown', (event) => {
     if (buffer.endsWith('sqrt')) {
         buffer = buffer.slice(0, -4);
         appendOperator('√');
+    } else if (buffer.endsWith('log')) {
+        buffer = buffer.slice(0, -3);
+        appendLog('10')
     } else if (buffer.endsWith('asin')) {
         buffer = buffer.slice(0, -3);
         appendInverseTrigFunc('asin')
@@ -258,10 +349,7 @@ document.addEventListener('keydown', (event) => {
     } else if (key === 'Backspace') {
         deleteLast();
         buffer = buffer.slice(0, -1);
-    } else if (key === 'Escape') {
-        clearDisplay();
-        buffer = ''; // Clear buffer
-    } else if (key === '(' || key === ')') {
+    }  else if (key === '(' || key === ')') {
         appendParenthesis(key);
     } else if (key === '.') {
         appendCharacter(key);

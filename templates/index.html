@@ -20,9 +20,15 @@
             </label>
         </div>
     </div>
-    <div class="settings-button" onclick="toggleSettingsMenu()">
-        <img src="{{ url_for('static', filename='assets/settingsgear.svg') }}" alt="Settings">
+    <div class="meta-buttons">
+        <div class="history-button" onclick="toggleEquationsList()">
+            <img src="{{ url_for('static', filename='assets/book.svg') }}" alt="History">
+        </div>
+        <div class="settings-button" onclick="toggleSettingsMenu()">
+            <img src="{{ url_for('static', filename='assets/settingsgear.svg') }}" alt="Settings">
+        </div>
     </div>
+    
     <div id="calculator" class="calculator">
         <div id="result" class="display">0</div>
         <div class="buttons">
@@ -38,7 +44,7 @@
             <button class="button" onclick="appendCharacter('8')">8</button>
             <button class="button" onclick="appendCharacter('9')">9</button>
             <button class="button bg-yellow-500" onclick="appendOperator('/')">/</button>
-            <button class="button bg-yellow-500" onclick="appendExpFunc('pow')">pow()</button>
+            <button class="button bg-yellow-500" onclick="appendLog('e')">ₑlog()</button>
             <button class="button bg-yellow-500" onclick="appendTrigFunc('tan')">tan()</button>
             <button class="button bg-yellow-500" onclick="appendPi()">π</button>
             <button class="button" onclick="appendCharacter('4')">4</button>
@@ -54,7 +60,7 @@
             <button class="button bg-yellow-500" onclick="appendOperator('-')">-</button>
             <button class="button bg-yellow-500" onclick="memoryRecall()">MR</button>
             <button class="button bg-yellow-500" onclick="appendInverseTrigFunc('asin')">asin()</button>
-            <button class="button bg-yellow-500" onclick="makeNegative()">+/-</button>
+            <button class="button bg-yellow-500" onclick="changePositiveNegative()">+/-</button>
             <button class="button col-span-2" onclick="appendCharacter('0')">0</button>
             <button class="button bg-green-500" onclick="calculate()">=</button>
             <button class="button bg-yellow-500" onclick="appendOperator('*')">*</button>
@@ -66,11 +72,12 @@
         </div>
     </div>
 
-    <div id="equations-list" class="equations-log hidden"></div>
+    <div id="equations-list" class="equations-log hidden">
         <ul id="equations"></ul>
     </div>
 
     <script src="{{ url_for('static', filename='calculator.js') }}"></script>
     <script src="{{ url_for('static', filename='storage.js') }}"></script>
+
 </body>
 </html>

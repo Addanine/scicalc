@@ -4,7 +4,7 @@ let internalExpression = '';
 let buffer = '';
 let equationsLog = [];
 let memoryValue = 0;
-var laterValueForLog
+var laterValueForLog = "10"
 
 
 
@@ -78,13 +78,24 @@ function appendLog(logBase) { //`appendLog` should add log function to display
     } else if (logBase === 'e') {
         var operatorsOnly = currentInput.replace(/[0-9]+/g, "");
         var lastOperator = operatorsOnly.charAt(operatorsOnly.length - 1);
-        var e = currentInput.split(lastOperator);
+        if (lastOperator == "") {
+            var e = currentInput;
+        } else {
+            var e = currentInput.split(lastOperator);
+        }
 
-        currentInput = currentInput.slice(0, -e[1].length);
-        currentInput += `${e[e.length - 1]}vlog(`;
-        internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]})`;
+
+        currentInput += "vlog(";
+        if (e.constructor === Array) {
+            internalExpression = internalExpression.slice(0, -e[1].length)
+            internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]})`;
+        } else {
+            internalExpression = internalExpression.slice(e)
+            internalExpression += `log(${laterValueForLog}, ${e})`;
+        }
+
     } else {
-        console.error('Invalid log base:', logBase);
+        console.error('Invalid log base:', e[e.length - 1]);
         return;
     }
     console.log('currentInput:', currentInput);

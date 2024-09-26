@@ -4,7 +4,7 @@ let internalExpression = '';
 let buffer = '';
 let equationsLog = [];
 let memoryValue = 0;
-var laterValueForLog
+var laterValueForLog = "10"
 
 
 
@@ -20,9 +20,14 @@ function deleteLast() { //`deleteLast` should delete the last character from dis
     display.innerText = currentInput || '0';
 }
 
-function makeNegative() { // `makeNegative` should toggle the sign of the number
-    currentInput = `-${currentInput}`;
-    internalExpression = `-${internalExpression}`;
+function changePositiveNegative() { // `changePositiveNegative` should toggle the sign of the number
+    if (currentInput.charAt(0) == '-') {
+        currentInput = currentInput.slice(1);
+        internalExpression = internalExpression.slice(1);
+    } else {
+        currentInput = `-${currentInput}`;
+        internalExpression = `-${internalExpression}`;
+    }
     display.innerText = currentInput;
 }
 
@@ -73,13 +78,24 @@ function appendLog(logBase) { //`appendLog` should add log function to display
     } else if (logBase === 'e') {
         var operatorsOnly = currentInput.replace(/[0-9]+/g, "");
         var lastOperator = operatorsOnly.charAt(operatorsOnly.length - 1);
-        var e = currentInput.split(lastOperator);
+        if (lastOperator == "") {
+            var e = currentInput;
+        } else {
+            var e = currentInput.split(lastOperator);
+        }
 
-        currentInput = currentInput.slice(0, -e[1].length);
-        currentInput += `${e[e.length - 1]}vₑlog(`;
-        internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]})`;
+
+        currentInput += "vlog(";
+        if (e.constructor === Array) {
+            internalExpression = internalExpression.slice(0, -e[1].length)
+            internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]})`;
+        } else {
+            internalExpression = internalExpression.slice(e)
+            internalExpression += `log(${laterValueForLog}, ${e})`;
+        }
+
     } else {
-        console.error('Invalid log base:', logBase);
+        console.error('Invalid log base:', e[e.length - 1]);
         return;
     }
     console.log('currentInput:', currentInput);
@@ -215,12 +231,13 @@ function closeEquationsList() {
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         closeEquationsList();
+        clearDisplay();
     }
 });
 
 document.addEventListener('click', (event) => {
     const equationsList = document.getElementById('equations-list');
-    const equationsToggleButton = document.querySelector('.settings-button');
+    const equationsToggleButton = document.querySelector('.history-button');
     const isClickInsideEquationsList = equationsList.contains(event.target);
 
     if (!isClickInsideEquationsList && !equationsToggleButton.contains(event.target)) {

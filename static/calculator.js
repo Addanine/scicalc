@@ -97,10 +97,10 @@ function appendLog(logBase) { //`appendLog` should add log function to display
         currentInput += "vlog(";
         if (e.constructor === Array) {
             internalExpression = internalExpression.slice(0, -e[1].length)
-            internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]})`;
+            internalExpression += `log(${laterValueForLog}, ${e[e.length - 1]}`;
         } else {
             internalExpression = internalExpression.slice(e)
-            internalExpression += `log(${laterValueForLog}, ${e})`;
+            internalExpression += `log(${laterValueForLog}, ${e}`;
         }
 
     } else {

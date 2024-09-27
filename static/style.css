@@ -111,8 +111,24 @@ body.dark-mode .bg-green-500 {
     color: #fff;
 }
 
-body.dark-mode .meta-buttons {
-    background-color: #555;
+body.dark-mode .settings-button {
+    color: #fff;
+}
+
+.settings-svg {
+    stroke: black;
+}
+
+body.dark-mode .settings-svg {
+    stroke: white;
+}
+
+.history-svg {
+    stroke: black;
+}
+
+body.dark-mode .history-svg {
+    stroke: white;
 }
 
 .meta-buttons {

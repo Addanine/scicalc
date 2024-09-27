@@ -13,21 +13,21 @@ def home():
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
-    data = request.get_json()
+    data = request.get_json() # Get the JSON object sent from the client
     expression = data.get('expression', '')
-    print(expression)
+    print(expression) # Print the expression to the console
     try:
         #Replace ^ with ** for exponentiation, √ with sqrt, and π with pi
         
         expression = expression.replace('^', '**').replace('√', 'sqrt').replace('π', '(pi)')
         # Parse and evaluate the expression safely using sympy
-        result = sp.sympify(expression).evalf()
-        if not session["history"]:
-            session["history"] = [{"result":str(result), "expression":expression}]
+        result = sp.sympify(expression).evalf()  # evalf() is used to evaluate the expression to a floating point number
+        if not session["history"]: # If history is empty, create a new list with the first entry
+            session["history"] = [{"result":str(result), "expression":expression}] # Store the result and expression in the history
         else:
-            session["history"] = [*session.get("history"),{"result":str(result), "expression":expression}]
+            session["history"] = [*session.get("history"),{"result":str(result), "expression":expression}] # Store the result and expression in the history
 
-        return jsonify(result=float(result))
+        return jsonify(result=float(result)) # Return the result as a JSON object
     except Exception as e:
         return jsonify(error=str(e))
 

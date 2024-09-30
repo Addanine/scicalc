@@ -3,12 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  root: 'frontend', // Specifies the root for Vite to look for `index.html`
   build: {
-    outDir: 'dist', // Output directory for production build
-    rollupOptions: {
-      // Additional options can be placed here
-    }
+    outDir: 'dist', // Ensure this is correct
   },
-  publicDir: 'public' // Points to `frontend/public` for serving static assets
+  root: 'frontend', // Set the root to `frontend` if your `index.html` is in `frontend/`
+  publicDir: 'public', // Static files served from `frontend/public`
 });

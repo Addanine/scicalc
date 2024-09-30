@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, session
 import sympy as sp
+from sympy import *
 
 app = Flask(__name__)
 app.secret_key = "CHANGEMEPLS"

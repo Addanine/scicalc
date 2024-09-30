@@ -69,13 +69,13 @@ function appendTrigFunc(trigFunc) { //`appendTrigFunc` should add trigonometric 
 function appendInverseTrigFunc(inverseTrigFunc) { // `appendInverseTrigFunc` should add inverse trigonometric function to display
     if (inverseTrigFunc == 'asin') {
         currentInput += "asin(";
-        internalExpression += "math.asin(";
+        internalExpression += "asin(";
     } else if (inverseTrigFunc == 'acos') {
         currentInput += "acos(";
-        internalExpression += "math.acos(";
+        internalExpression += "acos(";
     } else if (inverseTrigFunc == "atan") {
         currentInput += "atan(";
-        internalExpression += "math.atan(";
+        internalExpression += "atan(";
     }
     display.innerText = currentInput;
 }

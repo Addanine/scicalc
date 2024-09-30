@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scicalc</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+    <!-- Vite Stylesheet & Favicon -->
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="icon" href="/src/assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- Settings Menu -->
     <div id="settings-menu" class="settings-menu hidden">
         <h3>Settings</h3>
         <div class="setting">
@@ -15,11 +17,13 @@
             <label class="switch">
                 <input type="checkbox" id="dark-mode-switch">
                 <span class="slider round">
-                    <img id="slider-icon" src="{{ url_for('static', filename='assets/sun.svg') }}" alt="Mode Icon">
+                    <img id="slider-icon" src="/src/assets/sun.svg" alt="Mode Icon">
                 </span>
             </label>
         </div>
     </div>
+
+    <!-- Meta Buttons -->
     <div class="meta-buttons">
         <div class="history-button" onclick="toggleEquationsList()">
             <svg class="history-svg" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="none" viewBox="0 0 24 24">
@@ -34,7 +38,8 @@
         </div>
     </div>
     
-    <div id="calculator" class="calculator">
+    <!-- Calculator -->
+    <div id="calculator" class="calculator"> 
         <div id="result" class="display">0</div>
         <div class="buttons">
             <button class="button bg-yellow-500" onclick="appendInverseTrigFunc('atan')">atan()</button>
@@ -77,12 +82,14 @@
         </div>
     </div>
 
+    <!-- Equations List -->
     <div id="equations-list" class="equations-log hidden">
         <ul id="equations"></ul>
     </div>
 
-    <script src="{{ url_for('static', filename='calculator.js') }}"></script>
-    <script src="{{ url_for('static', filename='storage.js') }}"></script>
-
+    <!-- Vite Scripts -->
+    <script type="module" src="/src/calculator.js"></script>
+    <script type="module" src="/src/storage.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

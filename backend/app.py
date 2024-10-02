@@ -8,19 +8,13 @@ frontend_dist = os.path.join(os.path.dirname(__file__), '../frontend/dist')
 app = Flask(__name__, static_folder=frontend_dist, template_folder=frontend_dist)
 app.secret_key = "CHANGEMEPLS"
 
-# Make sure to initialize session properly
+
 @app.before_request
 def make_session_permanent():
     session.permanent = True
 
-# Serve Vite-generated assets in production
-@app.route('/<path:path>')
-def serve_frontend(path):
-    if os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    return send_from_directory(app.static_folder, 'index.html')
 
-@app.route('/')
+@app.route('/scicalc/')
 def home():
     return send_from_directory(app.static_folder, 'index.html')
 

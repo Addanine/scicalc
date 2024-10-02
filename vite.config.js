@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: '~/scicalc/dist',
+    outDir: '/dist/**',
   },
   root: 'frontend',
   publicDir: 'public', // Static files served from `frontend/public`

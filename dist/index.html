@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scicalc</title>
+    <!-- Vite Stylesheet & Favicon -->
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="icon" href="/src/assets/favicon.ico" type="image/x-icon">
+  <script type="module" crossorigin src="/assets/index-BCsgube8.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Dj1Nc_qF.css">
+</head>
+<body>
+    <!-- Settings Menu -->
+    <div id="settings-menu" class="settings-menu hidden">
+        <h3>Settings</h3>
+        <div class="setting">
+            <label for="dark-mode-switch">Dark Mode</label>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-switch">
+                <span class="slider round">
+                    <img id="slider-icon" src="/src/assets/sun.svg" alt="Mode Icon">
+                </span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Meta Buttons -->
+    <div class="meta-buttons">
+        <div class="history-button" onclick="toggleEquationsList()">
+            <svg class="history-svg" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18V6.9c0-.84 0-1.26.163-1.581a1.5 1.5 0 0 1 .656-.656c.32-.163.74-.163 1.581-.163h7.2c.84 0 1.26 0 1.581.163a1.5 1.5 0 0 1 .655.656c.164.32.164.74.164 1.581v9.6M6 18a1.5 1.5 0 0 0 1.5 1.5H18a1.5 1.5 0 0 1 0-3M6 18a1.5 1.5 0 0 1 1.5-1.5H18M9.75 8h4.5"/>
+            </svg>
+        </div>
+        <div class="settings-button" onclick="toggleSettingsMenu()">
+            <svg class="settings-svg" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.077 12c0 1.657-1.378 3-3.077 3-1.7 0-3.077-1.343-3.077-3S10.301 9 12 9c1.7 0 3.077 1.343 3.077 3Z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.35 4a.51.51 0 0 0-.498.379l-.416 1.619c-.533.217-1.031.5-1.484.837l-1.647-.46a.519.519 0 0 0-.585.231L4.069 9.394a.49.49 0 0 0 .087.61l1.232 1.16a6.403 6.403 0 0 0 0 1.672l-1.232 1.16a.49.49 0 0 0-.087.61l1.65 2.788a.518.518 0 0 0 .586.23l1.647-.459c.453.338.951.62 1.484.837l.416 1.62a.51.51 0 0 0 .497.378h3.302a.51.51 0 0 0 .497-.379l.416-1.619a6.705 6.705 0 0 0 1.484-.837l1.647.46a.519.519 0 0 0 .585-.231l1.651-2.788a.49.49 0 0 0-.087-.61l-1.232-1.16a6.403 6.403 0 0 0 0-1.672l1.232-1.16a.49.49 0 0 0 .087-.61l-1.65-2.788a.519.519 0 0 0-.586-.23l-1.647.459a6.702 6.702 0 0 0-1.484-.837l-.416-1.62A.51.51 0 0 0 13.651 4h-3.302Z"/>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Calculator -->
+    <div id="calculator" class="calculator"> 
+        <div id="result" class="display">0</div>
+        <div class="buttons">
+            <button class="button bg-yellow-500" onclick="appendInverseTrigFunc('atan')">atan()</button>
+            <button class="button bg-yellow-500" onclick="appendTrigFunc('sin')">sin()</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('^')">^</button>
+            <button class="button col-span-2 bg-red-500" onclick="clearDisplay()">C</button>
+            <button class="button col-span-2 bg-yellow-500" onclick="deleteLast()">⌫</button>
+            <button class="button bg-yellow-500" onclick="appendExpFunc('exp')">exp()</button>
+            <button class="button bg-yellow-500" onclick="appendTrigFunc('cos')">cos()</button>
+            <button class="button operator bg-yellow-500" onclick="squareInput()">x²</button>
+            <button class="button" onclick="appendCharacter('7')">7</button>
+            <button class="button" onclick="appendCharacter('8')">8</button>
+            <button class="button" onclick="appendCharacter('9')">9</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('/')">/</button>
+            <button class="button bg-yellow-500" onclick="appendLog('e')">logₓ()</button>
+            <button class="button bg-yellow-500" onclick="appendTrigFunc('tan')">tan()</button>
+            <button class="button bg-yellow-500" onclick="appendPi()">π</button>
+            <button class="button" onclick="appendCharacter('4')">4</button>
+            <button class="button" onclick="appendCharacter('5')">5</button>
+            <button class="button" onclick="appendCharacter('6')">6</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('+')">+</button>
+            <button class="button bg-yellow-500" onclick="memoryStore()">MS</button>
+            <button class="button bg-yellow-500" onclick="appendLog('10')">log₁₀()</button>
+            <button class="button bg-yellow-500" onclick="appendSqrt()">√</button>
+            <button class="button" onclick="appendCharacter('1')">1</button>
+            <button class="button" onclick="appendCharacter('2')">2</button>
+            <button class="button" onclick="appendCharacter('3')">3</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('-')">-</button>
+            <button class="button bg-yellow-500" onclick="memoryRecall()">MR</button>
+            <button class="button bg-yellow-500" onclick="appendInverseTrigFunc('asin')">asin()</button>
+            <button class="button bg-yellow-500" onclick="changePositiveNegative()">+/-</button>
+            <button class="button col-span-2" onclick="appendCharacter('0')">0</button>
+            <button class="button bg-green-500" onclick="calculate()">=</button>
+            <button class="button bg-yellow-500" onclick="appendOperator('*')">*</button>
+            <button class="button bg-yellow-500" onclick="memoryClear()">MC</button>
+            <button class="button bg-yellow-500" onclick="appendInverseTrigFunc('acos')">acos()</button>
+            <button class="button" onclick="appendCharacter('.')">.</button>
+            <button class="button col-span-2" onclick="appendParenthesis('(')">(</button>
+            <button class="button col-span-2" onclick="appendParenthesis(')')">)</button>
+        </div>
+    </div>
+
+    <!-- Equations List -->
+    <div id="equations-list" class="equations-log hidden">
+        <ul id="equations"></ul>
+    </div>
+
+    <!-- Vite Scripts -->
+</body>
+</html>

@@ -1,42 +1,46 @@
 from flask import Flask, send_from_directory, request, jsonify, session
 import sympy as sp
 import os
+from flask_cors import CORS
 
-# Path to Vite's build output
-frontend_dist = os.path.join(os.path.dirname(__file__), '../frontend/dist')
-
-app = Flask(__name__, static_folder=frontend_dist, template_folder=frontend_dist)
+# Create Flask app
+app = Flask(__name__, static_folder='../frontend/public', template_folder='../frontend/public')
 app.secret_key = "CHANGEMEPLS"
 
-# Make sure to initialize session properly
+CORS(app)
+
+# Ensure the session is permanent for retaining history
 @app.before_request
 def make_session_permanent():
     session.permanent = True
 
-# Serve Vite-generated assets in production
-@app.route('/<path:path>')
+# Serve the Vite-generated assets
+@app.route('/frontend/html', methods=['GET'])
 def serve_frontend(path):
-    if os.path.exists(os.path.join(app.static_folder, path)):
+    full_path = os.path.join(app.static_folder, path)
+    if os.path.exists(full_path):
         return send_from_directory(app.static_folder, path)
     return send_from_directory(app.static_folder, 'index.html')
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
     return send_from_directory(app.static_folder, 'index.html')
 
+# Endpoint for handling calculations
 @app.route('/calculate', methods=['POST'])
 def calculate():
     data = request.get_json()  # Get the JSON object sent from the client
     expression = data.get('expression', '')
-    print(f"Received expression: {expression}")  # Print the expression to the console for debugging
+    print(f"Received expression: {expression}")  # Print the expression for debugging
+
     try:
         # Replace ^ with ** for exponentiation, √ with sqrt, and π with pi
         expression = expression.replace('^', '**').replace('√', 'sqrt').replace('π', '(pi)')
         
         # Parse and evaluate the expression safely using sympy
-        result = sp.sympify(expression).evalf()  # evalf() is used to evaluate the expression to a floating point number
+        result = sp.sympify(expression).evalf()  # Evaluate the expression as a floating point number
         
-        # Check and initialize session history properly
+        # Check and initialize session history
         if "history" not in session:
             session["history"] = []  # Initialize the history list
         
@@ -48,9 +52,9 @@ def calculate():
         print(f"Error occurred: {e}")  # Print the error for debugging
         return jsonify(error=str(e)), 400  # Return the error message with a 400 status code
 
-@app.route('/history')
+# Endpoint for retrieving history
+@app.route('/history', methods=['GET'])
 def history():
-    # Return the calculation history from the session
     return jsonify(session.get("history", []))
 
 if __name__ == '__main__':

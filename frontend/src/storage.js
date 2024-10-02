@@ -17,11 +17,11 @@ function applyDarkModePreference() { //`applyDarkModePreference` should apply th
 function updateSliderIcon(darkModeEnabled) { //`updateSliderIcon` should update the slider icon based on the dark mode status
     const sliderIcon = document.getElementById('slider-icon');
     if (darkModeEnabled) {
-        sliderIcon.src="static/assets/moon.svg";
+        sliderIcon.src="/frontend/src/assets/moon.svg";
         sliderIcon.alt = "Moon Icon";
 
     } else {
-        sliderIcon.src = "static/assets/sun.svg";
+        sliderIcon.src = "/frontend/src/assets/sun.svg";
         sliderIcon.alt = "Sun Icon";
     }
 }

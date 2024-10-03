@@ -192,7 +192,7 @@ function calculate() {
         }
     })
     .catch(error => {
-        display.innerText = 'Error'; // Display an error if the server does not respond
+        display.innerText = 'Error: Cannot communicate with server'; // Display an error if the server does not respond
     });
 }
 

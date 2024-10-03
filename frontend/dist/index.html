@@ -7,8 +7,6 @@
     <!-- Vite Stylesheet & Favicon -->
     <link rel="stylesheet" href="/src/style.css">
     <link rel="icon" href="/src/assets/favicon.ico" type="image/x-icon">
-  <script type="module" crossorigin src="/assets/index-BCsgube8.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-Dj1Nc_qF.css">
 </head>
 <body>
     <!-- Settings Menu -->
@@ -19,7 +17,7 @@
             <label class="switch">
                 <input type="checkbox" id="dark-mode-switch">
                 <span class="slider round">
-                    <img id="slider-icon" src="/src/assets/sun.svg" alt="Mode Icon">
+                    <img id="slider-icon" src="/frontend/src/assets/sun.svg" alt="Mode Icon">
                 </span>
             </label>
         </div>
@@ -83,12 +81,15 @@
             <button class="button col-span-2" onclick="appendParenthesis(')')">)</button>
         </div>
     </div>
-
+ 
     <!-- Equations List -->
     <div id="equations-list" class="equations-log hidden">
         <ul id="equations"></ul>
     </div>
 
     <!-- Vite Scripts -->
+    <script type="module" src="/frontend/src/calculator.js"></script>
+    <script type="module" src="/frontend/src/storage.js"></script>
+    <script type="module" src="/frontend/src/main.jsx"></script>
 </body>
 </html>

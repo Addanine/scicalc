@@ -1,4 +1,5 @@
 from flask import Flask, send_from_directory, request, jsonify, session
+from flask_cors import CORS
 import sympy as sp
 import os
 
@@ -6,6 +7,7 @@ import os
 frontend_dist = os.path.join(os.path.dirname(__file__), '../frontend/dist')
 
 app = Flask(__name__, static_folder=frontend_dist, template_folder=frontend_dist)
+CORS(app)  # Enable CORS to allow requests from Vercel frontend
 app.secret_key = "CHANGEMEPLS"
 
 
@@ -48,4 +50,4 @@ def history():
     return jsonify(session.get("history", []))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3000)
+    app.run(debug=True, port=3000, host='0.0.0.0')  # Ensure server runs on port 5000 and is accessible externally

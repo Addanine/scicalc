@@ -7,6 +7,8 @@
     <!-- Vite Stylesheet & Favicon -->
     <link rel="stylesheet" href="/src/style.css">
     <link rel="icon" href="/src/assets/favicon.ico" type="image/x-icon">
+  <script type="module" crossorigin src="/assets/index-Dmlx7uyD.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Dj1Nc_qF.css">
 </head>
 <body>
     <!-- Settings Menu -->
@@ -17,7 +19,7 @@
             <label class="switch">
                 <input type="checkbox" id="dark-mode-switch">
                 <span class="slider round">
-                    <img id="slider-icon" src="/frontend/src/assets/sun.svg" alt="Mode Icon">
+                    <img id="slider-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20fill='none'%20viewBox='0%200%2024%2024'%3e%3cpath%20stroke='%23000'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='1.5'%20d='M12%203v2.77m-6.462-.232%201.959%201.959M5.538%2018.46l1.959-1.958M18.343%205.538l-1.958%201.959m2.075%2010.965-1.958-1.959M21%2012h-2.77M12%2018.23V21m-6.23-9H3m12.692%200a3.692%203.692%200%201%201-7.384%200%203.692%203.692%200%200%201%207.384%200Z'/%3e%3c/svg%3e" alt="Mode Icon">
                 </span>
             </label>
         </div>
@@ -81,15 +83,12 @@
             <button class="button col-span-2" onclick="appendParenthesis(')')">)</button>
         </div>
     </div>
- 
+
     <!-- Equations List -->
     <div id="equations-list" class="equations-log hidden">
         <ul id="equations"></ul>
     </div>
 
     <!-- Vite Scripts -->
-    <script type="module" src="/frontend/src/calculator.js"></script>
-    <script type="module" src="/frontend/src/storage.js"></script>
-    <script type="module" src="/frontend/src/main.jsx"></script>
 </body>
 </html>
